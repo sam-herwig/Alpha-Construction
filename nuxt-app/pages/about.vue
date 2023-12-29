@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="about-page">
     <Placeholder 
       title="Header"
     />
@@ -7,13 +7,8 @@
       title="Hero"
       :aspect-ratio="2"
     />
-     <Placeholder 
-      title="About"
-      :aspect-ratio="2"
-      :to="'/about'"
-    />
     <Placeholder 
-      title="Work Carousel"
+      title="About"
       :aspect-ratio="2"
     />
     <Placeholder 
