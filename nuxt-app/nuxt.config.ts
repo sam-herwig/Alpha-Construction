@@ -1,7 +1,5 @@
 require('dotenv').config({ path: '../sanity/.env' });
 
-console.log(process.env.SANITY_STUDIO_PROJECT_ID);
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true }, 
@@ -20,11 +18,12 @@ export default defineNuxtConfig({
         },
       },
     },
+    optimizeDeps: { exclude: ["fsevents"] },
   }, 
-  modules: ["@nuxtjs/sanity"],
+  buildModules: ['@nuxtjs/sanity/module'],
   sanity: {
     projectId: process.env.SANITY_STUDIO_PROJECT_ID,
-    apiVersion: '2021-10-21',
+    // apiVersion: '2021-10-21',
     minimal: true,
   },
 })
