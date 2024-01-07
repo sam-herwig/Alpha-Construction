@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   buildModules: ['@nuxtjs/sanity/module'],
   sanity: {
     projectId: process.env.SANITY_STUDIO_PROJECT_ID,
-    // apiVersion: '2021-10-21',
+    apiVersion: '2021-10-21',
     minimal: true,
   },
 })

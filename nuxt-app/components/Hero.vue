@@ -2,8 +2,8 @@
   <section class="hero-wrapper">
     <div class="hero-inner">
       <div class="hero-titles">
-        <h1 class="main-title h2">Alpha Construction</h1>
-        <h6 class="work-title">Creating homes in the high alpine</h6>
+        <h1 class="main-title h2">{{ title }}</h1>
+        <h6 class="work-title">{{ description }}</h6>
       </div>
 
     </div>
@@ -14,6 +14,17 @@
 <script>
 
 export default {
+  props: {
+    title: {
+      default: 'Alpha Construction'
+    }, 
+    description: {
+      default: 'Creating homes in the high alpine'
+    }
+  }, 
+  mounted() {
+    console.log(this.title)
+  }
 }
 
 </script>

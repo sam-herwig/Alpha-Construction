@@ -4,9 +4,12 @@
       title="Header"
     />
     <!-- <Placeholder 
-      :title="home.homeTitle"
+      :title="title"
       :aspect-ratio="2"
     /> -->
+    <Hero
+      :title="title"
+    />
      <Placeholder 
       title="About"
       :aspect-ratio="2"
@@ -23,36 +26,37 @@
   </div>
 </template>
 
-<script>
-import { groq } from '@nuxtjs/sanity';
-
-// console.log(groq);
+<script >
 import { typeFilter, imageProjection } from '@/utils/groq-common';
- const query =  typeFilter('home');
- console.log(query);
-// console.log(typeFilter)
-export default {
+import { groq } from '@nuxtjs/sanity'
 
-  asyncData({ $sanity }) {
-    return $sanity.fetch(query)
-  },
- 
-  // asyncData({ query, $sanity }) {
-  //   const request = groq` {
+const query = groq`*[_type == "home"][0].homeTitle`
+  // const query = groq` {
   //    ${typeFilter('home')} {
   //       homeTitle
   //     },
   //   }
-  //   `;
-  //   // const result = await (query.preview === 'true' ? $sanity.preview.fetch(request) : $sanity.fetch(request));
-  //   const result = await ($sanity.fetch(request));
-  //   console.log(result);
-  //   return result;
-  // },
+  // `;
 
+export default {
+  data() {
+    return {
+      title: ''
+    }
+  },
+  async fetch() {
+    console.log(this.title)
+    console.log(await this.$sanity.fetch(query));
+    this.title = await this.$sanity.fetch(query)
+    
+  },
+  // asyncData({ $sanity }) {
+  //   return $sanity.fetch(query)
+  // },
+  
   mounted() {
-    console.log(query);
-  }
+   
+  },
 }
 
 </script>
