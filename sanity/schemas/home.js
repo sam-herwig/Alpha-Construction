@@ -19,6 +19,12 @@ export default defineType({
       name: 'homeTitle',
       title: 'Home Title',
       type: 'string'
-    })
+    }), 
+    defineField({
+      name: 'homeDescription',
+      title: 'Description',
+      type: 'text',
+      rows: 3
+    }),
   ]
 });
