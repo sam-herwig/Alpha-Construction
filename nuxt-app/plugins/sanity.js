@@ -3,7 +3,8 @@ import {createClient} from '@sanity/client'
 
 export default defineNuxtPlugin(nuxtApp => {
   // Doing something with nuxtApp
-  const config = useRuntimeConfig()
+  const config = useRuntimeConfig();
+  console.log(config.public.SANITY_STUDIO_PROJECT_ID);
   return {
     provide: {
       sanity: createClient({

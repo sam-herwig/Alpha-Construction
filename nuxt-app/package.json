@@ -19,7 +19,10 @@
     "@nuxtjs/dotenv": "^1.4.2",
     "@sanity/client": "^6.12.3",
     "groq": "^3.26.1",
+    "install": "^0.13.0",
+    "npm": "^10.4.0",
     "sass": "^1.69.5",
-    "sass-loader": "^13.3.3"
+    "sass-loader": "^13.3.3",
+    "vue3-carousel": "^0.3.1"
   }
 }

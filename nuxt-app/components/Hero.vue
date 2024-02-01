@@ -1,17 +1,31 @@
 <template>
   <section class="hero-wrapper">
     <div class="hero-inner">
-      <div class="hero-titles">
+      <!-- <div class="hero-titles">
         <h1 class="main-title h2">{{ title }}</h1>
         <h6 class="work-title">{{ description }}</h6>
-      </div>
+      </div> -->
 
+    <carousel :items-to-show="1.5">
+      <slide v-for="slide in 10" :key="slide">
+        {{ slide }}
+      </slide>
+
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
     </div>
   </section>
 
 </template> 
 
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
+import 'vue3-carousel/dist/carousel.css'
 
 export default {
   props: {
@@ -22,6 +36,12 @@ export default {
       default: 'Creating homes in the high alpine'
     }
   }, 
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
   mounted() {
     console.log(this.title)
   }
@@ -38,20 +58,20 @@ export default {
     padding: span(2);
     text-align: center;
 
-    .hero-titles {
-    }
+    // .hero-titles {
+    // }
 
-    .main-title {
-      margin-bottom: $margin-large;
+    // .main-title {
+    //   margin-bottom: $margin-large;
 
-      span {
-        display: block;
-      }
-    }
+    //   span {
+    //     display: block;
+    //   }
+    // }
 
-    .work-title {
-      color: $brown;
-    }
+    // .work-title {
+    //   color: $brown;
+    // }
   }
 }
 

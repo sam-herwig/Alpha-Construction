@@ -7,9 +7,9 @@
       :title="data.home.homeTitle"
       :aspect-ratio="2"
     />
-    <!-- <Hero
-      :title="title"
-    /> -->
+    <Hero
+    />
+    <!-- 'https://cdn.sanity.io/images/u2pvdjb3/production/9838983e25252134344e0002a2c7b8320dab981c-1498x1000.jpg" -->
      <Placeholder 
       title="About"
       :aspect-ratio="2"
@@ -56,10 +56,6 @@ const request = groq`{
 
 
 // export default {
-
-
-
-
 
 
   // async asyncData({ $sanity }) {
