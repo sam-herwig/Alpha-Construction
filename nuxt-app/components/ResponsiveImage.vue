@@ -125,6 +125,10 @@ export default {
     window.addEventListener("resize", this.onViewportResize);
     window.requestAnimationFrame(this.onViewportResize);
 
+    console.log(this.src)
+
+    // console.log(this.$refs.image);
+
     if(this.$refs.image) {
       this.$refs.image.addEventListener('load', () => {
         if(!this.isLoaded) {
@@ -188,12 +192,15 @@ export default {
           counter -= 200;
         }
       }
+      console.log(format);
 
       return widths
         .map(width => {
           return `${this.src}${this.src.includes('?') ? '&' : '?'}${format ? 'fm=' + format : ''}&q=${this.quality}&w=${width} ${width}w`;
         })
         .join(', ');
+
+    
     },
     onViewportResize() {
       this.throttledResize();
