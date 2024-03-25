@@ -7,7 +7,13 @@
       :title="data.home.homeTitle"
       :aspect-ratio="2"
     /> -->
-    <Hero
+
+    <!-- <HomeHero 
+      :title="data.home.homeTitle"
+      :image="data.home.heroImage"
+    /> -->
+    
+    <Carousel
       :slides="data.build"
     />
     <About 
@@ -48,10 +54,10 @@ const request = groq`{
             buildTitle,
             buildDescription,
             buildImage {
-            'src': asset->url,
-            'width': asset->metadata.dimensions.width,
-            'height': asset->metadata.dimensions.height,
-          },
+              'src': asset->url,
+              'width': asset->metadata.dimensions.width,
+              'height': asset->metadata.dimensions.height,
+            },
           }, 
   }`;
 

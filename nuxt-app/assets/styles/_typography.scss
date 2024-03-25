@@ -36,11 +36,11 @@ em, i {
 }
 
 input {
-  font-family: $poppins-medium;
+  font-family: $roboto;
 }
 
 label {
-  font-family: $poppins-medium;
+  font-family: $roboto;
 }
 
 /****************************************
@@ -53,9 +53,10 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  font-family: $poppins-bold;
+  font-family: $roboto;
   color: $white;
-  font-weight: $weight-bold;
+  // font-weight: $weight-bold;
+
 }
 
 h1, .h1 {
@@ -99,9 +100,9 @@ h6, .h6 {
 .p3,
 .p4,
 p, a, select, body, li, button {
-  font-family: $tinos-regular;
+   font-family: $roboto;
   // font-weight: $weight-medium;
-  line-height: 1.16em;
+  line-height: 1em;
   text-transform: none;
   color: $white;
 

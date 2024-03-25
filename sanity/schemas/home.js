@@ -26,5 +26,11 @@ export default defineType({
       type: 'text',
       rows: 3
     }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Image',
+      //description: 'Recommended image size: 2000px × 2500px (4:5 aspect ratio)',
+      type: 'image'
+    }),
   ]
 });

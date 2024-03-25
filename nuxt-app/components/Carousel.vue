@@ -1,7 +1,7 @@
 <template>
-  <section class="hero-wrapper">
-    <div class="hero-inner">
-      <!-- <div class="hero-titles">
+  <section class="carousel-wrapper">
+    <div class="carousel-inner">
+      <!-- <div class="carousel-titles">
         <h1 class="main-title h2">{{ title }}</h1>
         <h6 class="work-title">{{ description }}</h6>
       </div> -->
@@ -56,10 +56,10 @@ export default {
 
 <style lang="scss">
 
-.hero-wrapper {
+.carousel-wrapper {
   position: relative;
 
-  .hero-inner {
+  .carousel-inner {
     padding: span(2);
     text-align: center;
 
@@ -135,7 +135,7 @@ export default {
          
       }
     }
-    // .hero-titles {
+    // .carousel-titles {
     // }
 
     // .main-title {
@@ -152,7 +152,7 @@ export default {
   }
 
   @include respond-to($tablet) {
-    .hero-inner {
+    .carousel-inner {
       padding: 0 span(2);
 
       .carousel__item {
