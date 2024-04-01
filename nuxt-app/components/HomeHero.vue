@@ -1,8 +1,9 @@
 <template>
   <section class="hero-wrapper">
     <div class="hero-inner">
-      <h1>{{ title }}</h1>
-      <img :bind="heroImage">
+     
+      <img :src="heroImage.src">
+      <h1 class="h2">{{ title }}</h1>
     </div>
   </section>
 </template>
@@ -17,6 +18,9 @@ export default {
     }, 
     heroImage: Object
   }, 
+  mounted() {
+    console.log(this.heroImage)
+  }
 }
 
 </script>
@@ -24,10 +28,32 @@ export default {
 <style lang="scss">
 .hero-wrapper {
   width: 100%; 
+  height: 100%;
+  margin-bottom: span(2);
+  position: relative;
+
+  &::after {
+    content: ''; 
+    @include abs-fill;
+      background-image: linear-gradient(to bottom, 
+    rgba(0,0,0,0), $black);
+  }
+
 
   .hero-inner {
     aspect-ratio: 16 /9; 
     width: 100; 
+    height: 100%;
+    position: relative;
+
+    .h2 {
+      width: 60%; 
+      position: absolute; 
+      // text-align: center;
+      bottom: 0;
+      z-index: 2;
+
+    }
     
     img {
       @include abs-fill;

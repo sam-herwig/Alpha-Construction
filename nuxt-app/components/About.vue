@@ -2,8 +2,7 @@
   <section class="about-wrapper">
     <div class="about-inner">
       <div class="left-side">
-        <h3 class="about-title">About Us</h3>
-        <h6 class="subtitle">We Are Alpha Construction</h6>
+        <h2 class="h3 about-title">About Us</h2>
         <p class="about-description">We hav been creating high alpine homes in Summit county for XX years. </p>
       </div>
       <div class="right-side">
@@ -32,6 +31,7 @@
     }
     .about-description {
       margin-bottom: $margin-small; 
+      width: 80%;
     }
 
     .right-side {

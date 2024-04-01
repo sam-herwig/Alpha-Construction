@@ -1,24 +1,25 @@
 <template>
   <div class="home-page">
-    <!-- <Placeholder 
-      title="Header"
-    />
-    <Placeholder 
-      :title="data.home.homeTitle"
-      :aspect-ratio="2"
-    /> -->
+    <Header/>
 
-    <!-- <HomeHero 
+    <HomeHero 
       :title="data.home.homeTitle"
-      :image="data.home.heroImage"
-    /> -->
-    
-    <Carousel
-      :slides="data.build"
+      :heroImage="data.home.heroImage"
     />
+    
+
     <About 
       
     />
+    <!-- <HomeCarousel
+      :slides="data.build"
+    /> -->
+
+
+    <ProjectGrid
+      :cards="data.build"
+    />
+
     <Contact 
       
     />
@@ -45,9 +46,14 @@ import groq from 'groq';
 
 const { $sanity } = useNuxtApp();
 const request = groq`{
-    'home': *[_type == "home"]{
+    'home': *[_type == "home"] {
             homeTitle,
             homeDescription,
+            heroImage {
+              'src': asset->url,
+              'width': asset->metadata.dimensions.width,
+              'height': asset->metadata.dimensions.height,
+            },
           }[0], 
     'build': *[_type == "singleBuild"] {
             ...,
@@ -62,7 +68,7 @@ const request = groq`{
   }`;
 
   const data = await $sanity.fetch(request)
-  console.log(data) 
+  console.log(data.build) 
 
   //   const { data, refresh } = $sanity(request)
 
