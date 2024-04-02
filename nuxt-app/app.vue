@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="app wrapper">
     <NuxtLayout>
       <NuxtPage/>
     </NuxtLayout>
@@ -20,42 +20,43 @@ export default {
     };
   },
   head() {
-    return this.$getHeadData();
+    // return this.$getHeadData();
   },
+  name: "App",
   computed: {
-    menu_open() {
-      return store.state.menu_open;
-    },
-    modal_open() {
-      return store.state.modal_open;
-    },
-    mobile_nav_open() {
-      return store.state.mobile_nav;
-    },
-    middle_x() {
-      return (this.app_width === 0 ? 0 : Math.round(this.app_width / 2)).toString();
-    },
-    middle_y() {
-      return (this.app_height === 0 ? 0 : Math.round(this.app_height / 2)).toString();
-    },
-    isPreview() {
-      return !!(this.$route && this.$route.query && this.$route.query.preview && this.$route.query.preview === 'true');
-    }
+    // menu_open() {
+    //   return store.state.menu_open;
+    // },
+    // modal_open() {
+    //   return store.state.modal_open;
+    // },
+    // mobile_nav_open() {
+    //   return store.state.mobile_nav;
+    // },
+    // middle_x() {
+    //   return (this.app_width === 0 ? 0 : Math.round(this.app_width / 2)).toString();
+    // },
+    // middle_y() {
+    //   return (this.app_height === 0 ? 0 : Math.round(this.app_height / 2)).toString();
+    // },
+    // isPreview() {
+    //   return !!(this.$route && this.$route.query && this.$route.query.preview && this.$route.query.preview === 'true');
+    // }
   },
   mounted() {
-    this.consoleBrand();
-    //this.applyVueScrollFix();
-    this.applyScrollbarClass();
+    // this.consoleBrand();
+    // //this.applyVueScrollFix();
+    // this.applyScrollbarClass();
 
-    // this.is_active = false;
-    this.is_active = true;
-    this.observe();
-    this.onScroll();
-    // window.addEventListener('resize', this.onViewportResize);
-    window.addEventListener('resize', _.throttle(this.onViewportResize, 300));
-    window.addEventListener('DOMContentLoaded', this.onViewportResize, { once: true });
-    setTimeout(this.onViewportResize, 0);
-    this.onViewportResize();
+    // // this.is_active = false;
+    // this.is_active = true;
+    // this.observe();
+    // this.onScroll();
+    // // window.addEventListener('resize', this.onViewportResize);
+    // window.addEventListener('resize', _.throttle(this.onViewportResize, 300));
+    // window.addEventListener('DOMContentLoaded', this.onViewportResize, { once: true });
+    // setTimeout(this.onViewportResize, 0);
+    // this.onViewportResize();
   },
   methods: {
     // observe some events
@@ -130,7 +131,7 @@ export default {
 
       document.body.removeChild(parent);
     },
-    ...mapMutations(['onScroll'])
+    // ...mapMutations(['onScroll'])
   }
 };
 </script>

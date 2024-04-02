@@ -41,7 +41,7 @@ export default {
 
 
   .hero-inner {
-    aspect-ratio: 16 /9; 
+    aspect-ratio: 16 / 9; 
     width: 100; 
     height: 100%;
     position: relative;
@@ -49,6 +49,7 @@ export default {
     .h2 {
       width: 60%; 
       position: absolute; 
+      left: span(2);
       // text-align: center;
       bottom: 0;
       z-index: 2;

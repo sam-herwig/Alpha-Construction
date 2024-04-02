@@ -6,14 +6,16 @@
       :title="data.home.homeTitle"
       :heroImage="data.home.heroImage"
     />
+
+    <HomeCarousel
+      :slides="data.build"
+    />
     
 
     <About 
       
     />
-    <!-- <HomeCarousel
-      :slides="data.build"
-    /> -->
+
 
 
     <ProjectGrid
@@ -59,6 +61,7 @@ const request = groq`{
             ...,
             buildTitle,
             buildDescription,
+            slug,
             buildImage {
               'src': asset->url,
               'width': asset->metadata.dimensions.width,

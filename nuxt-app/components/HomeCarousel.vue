@@ -2,16 +2,23 @@
   <section class="carousel-wrapper">
     <div class="carousel-inner">
       <!-- <div class="carousel-titles">
-        <h1 class="main-title h2">{{ title }}</h1>
+      
         <h6 class="work-title">{{ description }}</h6>
       </div> -->
+
+      <h2 class="main-title h4">Our Recent Work</h2>
         <!--<ResponsiveImage :bind="slides[0].slide.img"/> -->
 
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
           <!-- {{ slide }} -->
-          <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
-          <h6 class="slide-title">{{slide.buildTitle}}</h6>
+          <RouterLink :to="`projects/${slide.slug.current}`">
+            <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
+            <div class="copy-wrapper">
+              <h6 class="slide-title">{{slide.buildTitle}}</h6>
+              <p class="slide-copy">{{slide.buildDescription}}</p>
+            </div>
+          </RouterLink>
         </slide>
 
         <template #addons>
@@ -29,6 +36,7 @@ import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 import ResponsiveImage from '~/components/ResponsiveImage.vue'
+// import { NuxtLink } from '#build/components'
 
 export default {
   props: {
@@ -45,7 +53,8 @@ export default {
     Slide,
     Pagination,
     Navigation,
-    ResponsiveImage
+    ResponsiveImage,
+    // NuxtLink
 },
   mounted() {
     console.log(this.slides)
@@ -61,7 +70,7 @@ export default {
 
   .carousel-inner {
     padding: span(2);
-    text-align: center;
+    // text-align: center;
 
     .carousel__item {
       min-height: 200px;
@@ -81,6 +90,17 @@ export default {
       @include aspect-ratio(120%);
 
 
+      &::after {
+        content: ''; 
+        @include abs-fill;
+        //   background-image: radial-gradient(closest-corner, 
+        // rgba(0,0,0,0), rgba(22,22,22,0.5));
+        pointer-events: none;
+        background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.7%);
+
+      }
+
+
        img {
         @include abs-fill;
         object-fit: cover;
@@ -88,8 +108,17 @@ export default {
         // height: 300px;
       }
 
-      .slide-title {
-       @include abs-center;
+      .copy-wrapper {
+        position: absolute; 
+        left: span(1); 
+        bottom: span(1);
+        width: span(20);
+        text-align: left;
+        z-index: 5;
+
+        .slide-title {
+          margin-bottom: $margin-small;
+        }
       }
     }
 
@@ -99,9 +128,17 @@ export default {
 
       svg {
         fill: white;
-        width: 40px; 
-        height: 40px;
+        width: 60px; 
+        height: 60px;
       }
+    }
+
+    .carousel__next {
+      right: span(-2);
+    }
+
+    .carousel__prev {
+      left: span(-2);
     }
 
     .carousel__pagination-button {
@@ -138,17 +175,18 @@ export default {
     // .carousel-titles {
     // }
 
-    // .main-title {
-    //   margin-bottom: $margin-large;
+    .main-title {
+      margin-bottom: $margin-large;
 
-    //   span {
-    //     display: block;
-    //   }
-    // }
 
-    // .work-title {
-    //   color: $brown;
-    // }
+      span {
+        display: block;
+      }
+    }
+
+    .work-title {
+      color: $brown;
+    }
   }
 
   @include respond-to($tablet) {
@@ -169,6 +207,14 @@ export default {
       .carousel__slide {
         padding: 10px;
         @include aspect-ratio(66%);
+
+        .copy-wrapper {
+          width: span(10);
+
+          .slide-title {
+            margin-bottom: $margin-small;
+          }
+        }
       }
      }
   }

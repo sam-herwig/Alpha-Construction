@@ -18,10 +18,12 @@ header {
   padding: span(0.25) span(1);
   display: flex; 
   align-items: center;
+  width: 100%;
   // justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0;
-  background-color: $black;
+  // background-color: $black;
+  background-color: rgba(22,22,22, 0.8);
   height: 80px;
   transition: all $speed-demon $evil-ease;
   z-index: 20;

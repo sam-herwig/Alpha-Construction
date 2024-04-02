@@ -21,6 +21,26 @@ export default defineType({
       type: 'string'
     }), 
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      description: 'The slug is a lowercase dashed name for the project URL. Press "Generate" to automatically create a slug from the title above.',
+      options: {
+        source: 'buildTitle'
+      },
+      validation: Rule => [
+        Rule.required().custom((slug) => {
+          if (typeof slug === "undefined") return true;
+          const regex = /(^[a-z0-9-]+$)/;
+          if(regex.test(slug.current)) {
+            return true;
+          } else {
+            return 'Invalid slug: Only numbers, lowercase letters, and dashes are allowed.'
+          }
+        })
+      ]
+    }),
+    defineField({
       name: 'buildDescription',
       title: 'Description',
       type: 'text',
