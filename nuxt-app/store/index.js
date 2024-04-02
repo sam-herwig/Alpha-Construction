@@ -1,122 +1,155 @@
+// import groq from 'groq';
+import Vue from 'vue';
+import Vuex from 'vuex';
 import { createStore } from 'vuex'
 
+Vue.use(Vuex);
+
 export default createStore({
+  loaded: false,
   menu_open: false,
-  new_mouse_pos: {x: -1000, y: -1000},
-  y_offset: has_window && pageYOffset,
-  mouse_listeners: false,
-  dark_mode: false,
-  projects_filter: "",
-  from_menu: false,
-  show_mask: false,
-  mask_mode: "mask-out",
-  is_mobile: has_window && innerWidth < 768,
-  site_name: undefined,
-  site_title: undefined,
-  site_description: undefined,
-  studio_email: undefined,
-  studio_phone: undefined,
-  studio_address: undefined
+  modal_open: false,
+  modal_residents: false,
+  modal_tour: false,
+  mobile_nav: false,
+  presented: false,
+  submitted: false,
+  svg_faded: true,
+  has_scrolled: false,
+  prev_scroll_y: 0,
+  is_desktop: undefined,
+  scroll_y: 0,
+  scroll_top: 0,
+  scroll_direction: 'up',
+  scroll_past_hero: false,
+  window_mid_y: 2000,
+  window_width: 0,
+  preloaded_imgs: {},
+  viewportWidth: 0,
+  viewportHeight: 0,
+  wrapperWidth: 0,
+  wrapperHeight: 0,
+  breakpoint: null,
+  forms: {},
+  inquiryUnit: 'N/A',
+  siteName: null,
+  siteDescription: null,
+  siteImage: null
 });
 
 export const mutations = {
-  menu_state(state, bool) {
-    state.menu_open = bool;
+  menu_state(state, menu_open) {
+    state.menu_open = menu_open;
   },
-  mousemove(state, pos) {
-    state.mouse_listeners = true;
-    state.new_mouse_pos = pos;
+  modal_state(state, modal_open) {
+    if(!modal_open) {
+      state.inquiryUnit = 'N/A';
+    }
+    state.modal_open = modal_open;
   },
-  scroll(state, y) {
-    state.mouse_listeners = true;
-    state.y_offset = y;
+  modal_state_residents(state, modal_residents) {
+    state.modal_residents = modal_residents;
   },
-  mode_change(state, new_mode) {
-    state.dark_mode = new_mode;
+  modal_state_tour(state, modal_tour) {
+    state.modal_tour = modal_tour;
   },
-  active_projects_filter(state, filter) {
-    state.projects_filter = filter;
+  mobile_nav_state(state, mobile_nav) {
+    state.mobile_nav = mobile_nav;
   },
-  page_transition(state, bool) {
-    state.show_mask = bool;
+  presented(state) {
+    state.presented = true;
   },
-  page_transition_from_menu(state, bool) {
-    state.from_menu = bool;
+  hasLoaded(state) {
+    state.loaded = true;
   },
-  update_mask_mode(state, mode) {
-    state.mask_mode = mode;
+  submitted(state) {
+    state.submitted = true;
   },
-  resize(state) {
-    state.is_mobile = window.innerWidth < 768;
+  setBreakpoint(state, val) {
+    state.breakpoint = val;
   },
-  update_site_name(state, site_name) {
-    state.site_name = site_name;
+  setViewportWidth(state, val) {
+    state.viewportWidth = val;
   },
-  update_site_title(state, site_title) {
-    state.site_title = site_title;
+  setViewportHeight(state, val) {
+    state.viewportHeight = val;
   },
-  update_site_description(state, site_description) {
-    state.site_description = site_description;
+  setWrapperWidth(state, val) {
+    state.wrapperWidth = val;
   },
-  update_studio_email(state, studio_email) {
-    state.studio_email = studio_email;
+  setWrapperHeight(state, val) {
+    state.wrapperHeight = val;
   },
-  update_studio_phone(state, studio_phone) {
-    state.studio_phone = studio_phone;
+  scrollPastHero(state, scroll_past_hero) {
+    state.scroll_past_hero = scroll_past_hero;
   },
-  update_studio_address(state, studio_address) {
-    state.studio_address = studio_address;
+  // onResize(state) {
+  //   state.window_mid_y = window.innerHeight / 2;
+  //   state.window_width = window.innerWidth;
+  //   state.is_desktop = window.innerWidth > 960;
+  // },
+  onScroll(state) {
+    let _prev_scroll_y = state.scroll_y;
+    let _new_scroll_y = Math.max(window.pageYOffset, 0);
+    state.scroll_top = Math.max(window.pageYOffset, 0);
+    state.prev_scroll_y = _prev_scroll_y;
+    state.scroll_y = _new_scroll_y;
+    state.scroll_direction = _new_scroll_y > _prev_scroll_y ? 'down' : 'up';
+    state.has_scrolled = window.pageYOffset >= 2;
   },
-  update_vimeo_link(state, vimeo_link) {
-    state.vimeo_link = vimeo_link;
+  onWheel(state) {
+    if (this._mac) {
+      //   this._wrapper.scrollLeft += e.deltaY;
+      // } else {
+      //   let d = e.deltaY < 0 ? -1 : 1;
+      //   if (this._smooth) this._wrapper.scrollLeft += 240 * d;
+      //   else this._wrapper.scrollLeft += 40 * d;
+    }
   },
-  update_instagram_link(state, instagram_link) {
-    state.instagram_link = instagram_link;
+  changeSvgFade(state, is_faded) {
+    state.svg_faded = is_faded;
   },
-  update_linkedin_link(state, linkedin_link) {
-    state.linkedin_link = linkedin_link;
+  onFormSubmit(state, formId) {
+    state.submitted_forms[formId] = true;
   },
-  update_facebook_link(state, facebook_link) {
-    state.facebook_link = facebook_link;
+  registerForm(state, formId) {
+    state.forms[formId] = false;
   },
-  update_twitter_link(state, twitter_link) {
-    state.twitter_link = twitter_link;
+  setInquiryUnit(state, val) {
+    state.inquiryUnit = val;
+  },
+  setSiteName(state, val) {
+    state.siteName = val;
+  },
+  setSiteDescription(state, val) {
+    state.siteDescription = val;
+  },
+  setSiteImage(state, val) {
+    state.siteImage = val;
   }
-}
+};
 
 // export const actions = {
-//   async nuxtServerInit ({ commit }) {
-//     const site = await client
-//       .getEntries({
-//         content_type: "site",
-//         include: 10,
-//         limit: 1
-//     });
+//   async nuxtServerInit(vuexCtx, ctx) {
+//     const request = groq`
+//       *[_type == 'siteSettings'][0] {
+//         ...,
+//         'siteImage': siteImage.asset->url
+//       }
+//     `;
 
-//     const site_fields = site.items[0].fields;
+//     const result = await ctx.$sanity.getClient().fetch(request);
 
-//     const site_name = site_fields.siteName;
-//     const site_title = site_fields.siteTitle;
-//     const site_description = site_fields.siteDescription;
-//     const studio_email = site_fields.studioEmail;
-//     const studio_phone = site_fields.studioPhone;
-//     const studio_address = site_fields.studioAddress;
-//     const vimeo_link = site_fields.vimeoLink;
-//     const instagram_link = site_fields.instagramLink;
-//     const linkedin_link = site_fields.linkedInLink;
-//     const facebook_link = site_fields.facebookLink;
-//     const twitter_link = site_fields.twitterLink;
+//     if(result && result.siteName) {
+//       vuexCtx.commit('setSiteName', result.siteName);
+//     }
 
-//     commit("update_site_name", site_name);
-//     commit("update_site_title", site_title);
-//     commit("update_site_description", site_description);
-//     commit("update_studio_email", studio_email);
-//     commit("update_studio_phone", studio_phone);
-//     commit("update_studio_address", studio_address);
-//     commit("update_vimeo_link", vimeo_link);
-//     commit("update_instagram_link", instagram_link);
-//     commit("update_linkedin_link", linkedin_link);
-//     commit("update_facebook_link", facebook_link);
-//     commit("update_twitter_link", twitter_link);
+//     if(result && result.siteDescription) {
+//       vuexCtx.commit('setSiteDescription', result.siteDescription);
+//     }
+
+//     if(result && result.siteImage) {
+//       vuexCtx.commit('setSiteImage', result.siteImage);
+//     }
 //   }
-// }
+// };

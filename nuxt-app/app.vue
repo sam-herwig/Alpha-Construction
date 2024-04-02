@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="wrapper">
     <NuxtLayout>
       <NuxtPage/>
     </NuxtLayout>
@@ -9,12 +9,14 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import {useStore} from "vuex";
 import _ from 'lodash';
 
 export default {
   data() {
     return {
-      is_active: false
+      is_active: false, 
+      store: null
     };
   },
   head() {
@@ -22,13 +24,13 @@ export default {
   },
   computed: {
     menu_open() {
-      return this.$store.state.menu_open;
+      return store.state.menu_open;
     },
     modal_open() {
-      return this.$store.state.modal_open;
+      return store.state.modal_open;
     },
     mobile_nav_open() {
-      return this.$store.state.mobile_nav;
+      return store.state.mobile_nav;
     },
     middle_x() {
       return (this.app_width === 0 ? 0 : Math.round(this.app_width / 2)).toString();
