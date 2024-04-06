@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <Header/>
+    <!-- <Header/> -->
 
     <HomeHero 
       :title="data.home.homeTitle"
@@ -15,8 +15,6 @@
     <About 
       
     />
-
-
 
     <ProjectGrid
       :cards="data.build"
@@ -71,7 +69,9 @@ const request = groq`{
   }`;
 
   const data = await $sanity.fetch(request)
-  console.log(data.build) 
+  // console.log($route.fullPath ) 
+
+   
 
   //   const { data, refresh } = $sanity(request)
 

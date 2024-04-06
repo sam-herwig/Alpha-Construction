@@ -12,7 +12,8 @@
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
           <!-- {{ slide }} -->
-          <RouterLink :to="`projects/${slide.slug.current}`">
+          <RouterLink :to="`/projects/${slide.slug.current}`">
+          <!-- <RouterLink :to="`/about`"> -->
             <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
             <div class="copy-wrapper">
               <h6 class="slide-title">{{slide.buildTitle}}</h6>

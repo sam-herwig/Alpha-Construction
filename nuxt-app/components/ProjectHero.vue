@@ -14,15 +14,13 @@
 export default {
   props: {
     title: {
-      default: 'Alpha Construction'
+      default: ''
     }, 
     heroImage: Object
   }, 
   mounted() {
-    console.log(this.heroImage)
   }
 }
-
 </script>
 
 <style lang="scss">
@@ -39,9 +37,8 @@ export default {
     rgba(0,0,0,0), $black);
   }
 
-
   .hero-inner {
-    aspect-ratio: 3 / 4; 
+    aspect-ratio: 16 / 9; 
     width: 100; 
     height: 100%;
     position: relative;
@@ -58,15 +55,11 @@ export default {
     
     img {
       @include abs-fill;
-      object-fit: cover;
     }
   }
-
-   @include respond-to($large-tablet) { 
-     .hero-inner {
-      aspect-ratio: 16 / 9; 
-     }
-   }
 }
 
 </style>
+
+
+

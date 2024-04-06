@@ -1,9 +1,9 @@
 <template>
     <header>
       <!-- <MainLogo/> -->
-      <div class="main-logo">
+      <router-link class="main-logo" to="/">
         <img src="https://cdn.sanity.io/images/u2pvdjb3/production/731a0e68021cdaa0298bfe7172650c9a4470c914-1116x834.png" alt="Alpha Construction Main Logo">
-      </div>
+      </router-link>
 
       <!-- <div class="controls" :class="{'open': menuOpen}">
         <button class="hamburger" :class="{'open': menuOpen}" aria-label="open main menu" @click="openMainMenu"></button>

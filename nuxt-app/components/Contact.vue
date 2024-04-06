@@ -3,8 +3,8 @@
     <div class="contact-inner">
       <div class="left-side">
         <h3 class="contact-title">Contact Us</h3>
-        <p class="t1">Give us a call at XXX-XXX-XXXX</p>
-        <p class="t1">Send us an Email XXX@gmail.com</p>
+        <a href="tel:970-485-5345" class="t1">Give us a call at 970-485-5345</a>
+        <a href="mailto:970-485-5345" class="t1">Send us an Email merrick@alphaconstructionbreck.com</a>
       </div>
 
        <div class="right-side">
@@ -33,6 +33,13 @@
     }
     .contact-description {
       margin-bottom: $margin-small; 
+    }
+
+    .left-side {
+      a {
+        display: block;
+        margin-bottom: $margin-small;
+      }
     }
 
     .right-side {

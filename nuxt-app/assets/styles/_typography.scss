@@ -91,7 +91,7 @@ h5, .h5 {
 }
 
 h6, .h6 {
-  @include fluid-type($min, $max, 30px, 45px);
+  @include fluid-type($min, $max, 22px, 35px);
   line-height: 1.16em;
 }
 

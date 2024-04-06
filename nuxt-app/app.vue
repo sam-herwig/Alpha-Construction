@@ -1,16 +1,20 @@
 <template>
   <div id="app wrapper">
     <NuxtLayout>
+      <Header/>
       <NuxtPage/>
+      <!-- <RouterView /> -->
     </NuxtLayout>
   </div>
+  <!-- <router-view/> -->
 </template>
 
 
 <script>
 import { mapMutations } from 'vuex';
 import {useStore} from "vuex";
-import _ from 'lodash';
+import _ from 'lodash'; 
+
 
 export default {
   data() {
@@ -20,7 +24,7 @@ export default {
     };
   },
   head() {
-    // return this.$getHeadData();
+ 
   },
   name: "App",
   computed: {
@@ -44,6 +48,7 @@ export default {
     // }
   },
   mounted() {
+
     // this.consoleBrand();
     // //this.applyVueScrollFix();
     // this.applyScrollbarClass();

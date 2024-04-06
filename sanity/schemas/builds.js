@@ -13,6 +13,9 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string', 
+       options: {
+        source: 'buildTitle'
+      },
       hidden: true
     }),
     defineField({
@@ -45,6 +48,26 @@ export default defineType({
       title: 'Description',
       type: 'text',
       rows: 3
+    }),
+    defineField({
+      name: 'buildAddress',
+      title: 'Address',
+      type: 'string'
+    }),
+    defineField({
+      name: 'buildSquareFeet',
+      title: 'Square Feet',
+      type: 'string'
+    }),
+    defineField({
+      name: 'buildArchitect',
+      title: 'Architect',
+      type: 'string'
+    }),
+    defineField({
+      name: 'buildBedBath',
+      title: 'Bed/Bath',
+      type: 'string'
     }),
     defineField({
       name: 'buildImage',
