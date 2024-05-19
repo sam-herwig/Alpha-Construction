@@ -15,12 +15,7 @@ export default defineNuxtConfig({
     // SCSS file in the project
     "~/assets/styles/app.scss", // you should add main.scss somewhere in your app
   ],
- components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-    },
-  ],
+ components: true,
   vite: {
     css: {
       devSourcemap: true,

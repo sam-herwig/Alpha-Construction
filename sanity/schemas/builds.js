@@ -75,5 +75,17 @@ export default defineType({
       //description: 'Recommended image size: 2000px × 2500px (4:5 aspect ratio)',
       type: 'image'
     }),
+    defineField({
+      name: 'exteriorImages',
+      title: 'Exterior Images',
+      type: 'array',
+      of: [{ type: 'image' }]
+    }), 
+     defineField({
+      name: 'interiorImages',
+      title: 'Interior Images',
+      type: 'array',
+      of: [{ type: 'image' }]
+    })
   ]
 });

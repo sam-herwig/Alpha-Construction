@@ -1,7 +1,7 @@
 <template>
   <section class="project-intro-wrapper">
     <div class="project-intro-inner">
-      <!-- <h2 class="h4">The Specs</h2> -->
+      <h2 class="h4">The Specs</h2>
         <div class="flex-wrapper">
         <div class="column">
           <p class="p1"> Address: <span class="h6">{{ buildAddress }}</span></p>
@@ -12,7 +12,6 @@
            <p class="p1">Square Feet: <span class="h6">{{ buildSquareFeet }}</span></p>
         </div>
       </div>
-    
     </div>
   </section>
 </template>
@@ -44,24 +43,22 @@ export default {
 .project-intro-wrapper {
   
   .project-intro-inner {
-    padding: span(2); 
+    padding: span(2);
+     text-align: center; 
 
     .h4 {
       margin-bottom: $margin-large;
     }
 
     .flex-wrapper {
-      display: flex; 
-      align-items: flex-start;
-      justify-content: space-between;
+
     
 
       .column {
-        width: 40%;
+        width: 100%;
 
         :first-child {
           padding-bottom: $margin-normal;
-          // border-bottom: 2px solid $brown;
         }
 
         p {
@@ -73,7 +70,22 @@ export default {
         }
       }
     }
+  }
 
+  @include respond-to($tablet) {
+    .project-intro-inner {
+      text-align: left;
+
+      .flex-wrapper {
+        display: flex; 
+        align-items: flex-start;
+        justify-content: space-between;
+
+         .column {
+            width: 40%;
+         }
+      }
+    }
   }
 
 }

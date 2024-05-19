@@ -1,27 +1,12 @@
 <template>
   <section class="carousel-wrapper">
     <div class="carousel-inner">
-      <!-- <div class="carousel-titles">
-      
-        <h6 class="work-title">{{ description }}</h6>
-      </div> -->
-
-      <h2 class="main-title h4">Our Recent Work</h2>
-        <!--<ResponsiveImage :bind="slides[0].slide.img"/> -->
+      <h2 class="main-title h4">{{ title }}</h2>
 
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
-          <!-- {{ slide }} -->
-          <nuxt-link :to="`/projects/${slide.slug.current}`">
-          <!-- <RouterLink :to="`/about`"> -->
-            <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
-            <div class="copy-wrapper">
-              <h6 class="slide-title">{{slide.buildTitle}}</h6>
-              <p class="slide-copy">{{slide.buildDescription}}</p>
-            </div>
-          </nuxt-link>
+            <img :src="slide.src" :width="slide.width" :height="slide.height"/>
         </slide>
-
         <template #addons>
           <navigation />
           <pagination />
@@ -41,7 +26,7 @@ import ResponsiveImage from '~/components/ResponsiveImage.vue'
 export default {
   props: {
     title: {
-      default: 'Alpha Construction'
+      default: ''
     }, 
     description: {
       default: 'Creating homes in the high alpine'
@@ -54,7 +39,10 @@ export default {
     Pagination,
     Navigation,
     ResponsiveImage,
- },
+  },
+  mounted() {
+    console.log(this.slides);
+  }
 }
 
 </script>
@@ -102,19 +90,6 @@ export default {
         object-fit: cover;
         // width: 100%; 
         // height: 300px;
-      }
-
-      .copy-wrapper {
-        position: absolute; 
-        left: span(1); 
-        bottom: span(1);
-        width: span(20);
-        text-align: left;
-        z-index: 5;
-
-        .slide-title {
-          margin-bottom: $margin-small;
-        }
       }
     }
 
@@ -203,14 +178,6 @@ export default {
       .carousel__slide {
         padding: 10px;
         @include aspect-ratio(66%);
-
-        .copy-wrapper {
-          width: span(10);
-
-          .slide-title {
-            margin-bottom: $margin-small;
-          }
-        }
       }
      }
   }
