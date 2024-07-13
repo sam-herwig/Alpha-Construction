@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header :class="{'showHeader':isHeaderVisible}">
       <!-- <MainLogo/> -->
       <router-link class="main-logo" to="/">
         <img src="https://cdn.sanity.io/images/u2pvdjb3/production/731a0e68021cdaa0298bfe7172650c9a4470c914-1116x834.png" alt="Alpha Construction Main Logo">
@@ -12,32 +12,57 @@
 <!-- :class="{'open': menuOpen}" -->
 </template>
 
+<script>
+import { ref, onMounted, onUnmounted } from 'vue';
+
+export default {
+  setup() {
+    const isHeaderVisible = ref(true);
+    let lastScrollPosition = 0;
+
+    const handleScroll = () => {
+      const currentScrollPosition = window.pageYOffset;
+      isHeaderVisible.value = currentScrollPosition < lastScrollPosition;
+      lastScrollPosition = currentScrollPosition;
+    };
+
+    onMounted(() => {
+      window.addEventListener('scroll', handleScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('scroll', handleScroll);
+    });
+
+    return { isHeaderVisible };
+  },
+};
+</script>
+
 
 <style lang="scss"> 
+
+.showHeader {
+  transition: opacity 333ms ease;
+  opacity: 1;
+}
+.header.v-leave-active {
+ 
+}
+
 header {
   padding: span(0.25) span(1);
   display: flex; 
   align-items: center;
   width: 100%;
-  // justify-content: space-between;
   position: fixed;
   top: 0;
-  // background-color: $black;
   background-color: rgba(22,22,22, 0.8);
   height: 80px;
   transition: all $speed-demon $evil-ease;
   z-index: 20;
+  opacity: 0;
 
-  // &.open {
-  //   background-color: $black;
-  //   transition: all $speed-demon $evil-ease;
-
-  //   .main-logo {
-  //     opacity: 0; 
-  //     pointer-events: none;
-  //     visibility: hidden;
-  //   }
-  // }
 
   .main-logo {
     width: auto;

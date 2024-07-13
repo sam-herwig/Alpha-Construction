@@ -137,18 +137,20 @@ export default {
       left: span(-2);
     }
 
+
+
     .carousel__pagination-button {
       &::after {
         background-color: white;
         width: 50px;
       }
-
-      &.--active {
-         &::after {
-          background-color: $brown;
-        }
-      }
     }
+
+    .carousel__pagination-button--active {
+        &::after {
+           background-color: $brown !important;
+        }
+     }
 
     .carousel__pagination-button--active {
       ::after {

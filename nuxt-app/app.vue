@@ -3,6 +3,7 @@
     <NuxtLayout>
       <Header/>
       <NuxtPage/>
+      <Footer/>
       <!-- <RouterView /> -->
     </NuxtLayout>
   </div>

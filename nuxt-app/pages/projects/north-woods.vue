@@ -31,7 +31,7 @@
 import groq from 'groq';
 
 const { $sanity } = useNuxtApp();
-const slug = 'tirman-morgan-residence';
+const slug = 'north-woods';
 const request = groq`{
     'build': *[_type == "singleBuild" && slug.current == $slug] {
           ...,

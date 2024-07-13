@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import slug from './pages/projects/_slug.vue'
-import dickerson from './pages/projects/dickerson.vue'
-import tirmanMorgan from './pages/projects/tirmanMorgan.vue'
-import brown from './pages/projects/brown.vue'
-import oglee from './pages/projects/oglee.vue'
+import delaware from './pages/projects/delaware.vue'
+import burroLane from './pages/projects/burro-lane.vue'
+import brown from './pages/projects/brown-residence.vue'
+import northWoods from './pages/projects/north-woods.vue'
+import IronMask from './pages/projects/iron-mask.vue'
 import about from './pages/about.vue'
 export const router = createRouter({
   routes: [
@@ -12,20 +12,24 @@ export const router = createRouter({
       component: about
     }, 
     {
-      path: '/projects/dickerson',
-      component: dickerson
+      path: '/projects/delaware',
+      component: delaware
     },
     {
-      path: '/projects/tirmanMorgan',
-      component: tirmanMorgan
+      path: '/projects/burro-lane',
+      component: burroLane
     },
     {
       path: '/projects/brown',
       component: brown
     },
     {
-      path: '/projects/oglee',
-      component: oglee
+      path: '/projects/north-woods',
+      component: northWoods
+    }, 
+    {
+      path: '/projects/iron-mask',
+      component: IronMask
     }
   ]
 });

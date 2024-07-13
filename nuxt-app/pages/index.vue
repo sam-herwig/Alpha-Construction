@@ -11,28 +11,10 @@
       :slides="data.build"
     />
     
-
     <About 
-      
-    />
-
-    <ProjectGrid
-      :cards="data.build"
     />
 
     <Contact 
-      
-    />
-    <!-- <ResponsiveImage :bind="slide.img"/>  -->
-    <!-- 'https://cdn.sanity.io/images/u2pvdjb3/production/9838983e25252134344e0002a2c7b8320dab981c-1498x1000.jpg" -->
-     <Placeholder 
-      title="About"
-      :aspect-ratio="2"
-      :to="'/about'"
-    />
-    <Placeholder 
-      title="Work Carousel"
-      :aspect-ratio="2"
     />
     <Placeholder 
       title="Footer"
@@ -69,40 +51,4 @@ const request = groq`{
   }`;
 
   const data = await $sanity.fetch(request)
-  // console.log($route.fullPath ) 
-
-   
-
-  //   const { data, refresh } = $sanity(request)
-
-  //   console.log( data)
-
-  // const data = await useSanityData({
-  //   query: request,
-  // })
-
-  // console.log(data);
-
-// const { data } = await useAsyncData('home', () => sanity.fetch(query))
-
-// console.log(data);
-
-
-// export default {
-
-
-  // async asyncData({ $sanity }) {
-  //   const request = groq`{
-  //     'home': *[_type == "home"]
-  //   }`;
-
-
-
-    
-  //   const result = await $sanity.getClient().fetch(request);
-  //   console.log(result);
-  //   return result;
-  // },
-// }
-
 </script>
