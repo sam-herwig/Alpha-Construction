@@ -33,50 +33,28 @@ import groq from 'groq';
 const { $sanity } = useNuxtApp();
 const slug = 'delaware';
 const request = groq`{
-    'build': *[_type == "singleBuild" && slug.current == $slug] {
-            ...,
-            buildTitle,
-            buildDescription,
-            slug,
-            buildImage {
-              'src': asset->url,
-              'width': asset->metadata.dimensions.width,
-              'height': asset->metadata.dimensions.height,
-            },
-          }[0], 
+    "build": *[_type == "singleBuild" && slug.current == $slug] {
+          ...,
+          buildTitle,
+          buildDescription,
+          slug,
+          buildImage {
+            'src': asset->url,
+            'width': asset->metadata.dimensions.width,
+            'height': asset->metadata.dimensions.height,
+          },
+          exteriorImages[] {
+            'src': asset->url,
+            'width': asset->metadata.dimensions.width,
+            'height': asset->metadata.dimensions.height,
+          },
+          interiorImages[] {
+            'src': asset->url,
+            'width': asset->metadata.dimensions.width,
+            'height': asset->metadata.dimensions.height,
+          },
+        }[0], 
   }`;
 
-   const data = await $sanity.fetch(request, { slug }) 
-  console.log(data);
-// import groq from 'groq';
-
-// export default {
-//   async asyncData({ $sanity }) {
-//     const slug = 'north-woods'; // Hardcoded slug value
-//     const request = groq`{
-//       'build': *[_type == "singleBuild" && slug.current == $slug] {
-//         buildTitle,
-//         buildDescription,
-//         slug,
-//         buildArchitect, 
-//         buildAddress, 
-//         buildBedBath, 
-//         buildSquareFeet,
-//         buildImage {
-//           'src': asset->url,
-//           'width': asset->metadata.dimensions.width,
-//           'height': asset->metadata.dimensions.height,
-//         },
-//       },
-//     }`;
-
-//     // const data = await $sanity.fetch(request, { slug });
-
-//   const data = await $sanity.fetch(request)
-
-//     console.log(data);
-
-//     return { data };
-//   },
-// };
+  const data = await $sanity.fetch(request, { slug }) 
 </script>

@@ -7,6 +7,8 @@
       :heroImage="data.home.heroImage"
     />
 
+    <HomeBio />
+
     <HomeCarousel
       :slides="data.build"
     />

@@ -1,7 +1,7 @@
 <template>
   <section class="carousel-wrapper">
     <div class="carousel-inner">
-      <h2 class="main-title h4">{{ title }}</h2>
+      <h2 class="main-title h5">{{ title }}</h2>
 
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
@@ -47,14 +47,13 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .carousel-wrapper {
   position: relative;
 
   .carousel-inner {
     padding: span(2);
-    // text-align: center;
 
     .carousel__item {
       min-height: 200px;
@@ -69,27 +68,20 @@ export default {
 
     .carousel__slide {
       padding: 10px;
-        // height: 40vh;
       position: relative;
       @include aspect-ratio(120%);
-
 
       &::after {
         content: ''; 
         @include abs-fill;
-        //   background-image: radial-gradient(closest-corner, 
-        // rgba(0,0,0,0), rgba(22,22,22,0.5));
         pointer-events: none;
         background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.7%);
 
       }
 
-
        img {
         @include abs-fill;
         object-fit: cover;
-        // width: 100%; 
-        // height: 300px;
       }
     }
 
@@ -162,7 +154,15 @@ export default {
 
   @include respond-to($tablet) {
     .carousel-inner {
-      padding: 0 span(2);
+      padding: span(2);
+      display: flex; 
+      justify-content: space-between;
+      align-items: flex-start;
+
+      .carousel {
+        width: span(18);
+        // flex: 1;
+      }
 
       .carousel__item {
         min-height: 200px;
@@ -171,7 +171,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh;
+        height: 50vh;
         position: relative;
       }
 

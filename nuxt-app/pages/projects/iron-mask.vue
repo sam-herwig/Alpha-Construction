@@ -65,5 +65,4 @@ const request = groq`{
   }`;
 
   const data = await $sanity.fetch(request, { slug }) 
-  console.log(data.build.exteriorImages);
 </script>

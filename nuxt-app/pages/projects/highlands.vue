@@ -38,7 +38,7 @@
 import groq from 'groq';
 
 const { $sanity } = useNuxtApp();
-const slug = 'brown-residence';
+const slug = 'highlands';
 
 const request = groq`{
     "build": *[_type == "singleBuild" && slug.current == $slug] {
@@ -65,5 +65,4 @@ const request = groq`{
   }`;
 
   const data = await $sanity.fetch(request, { slug }) 
-  console.log(data.build.exteriorImages);
 </script>
