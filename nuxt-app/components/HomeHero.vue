@@ -41,7 +41,7 @@ export default {
 
 
   .hero-inner {
-    aspect-ratio: 3 / 4; 
+    aspect-ratio: 9 / 16; 
     width: 100; 
     height: 100%;
     position: relative;
@@ -62,11 +62,11 @@ export default {
     }
   }
 
-   @include respond-to($large-tablet) { 
-     .hero-inner {
-      aspect-ratio: 16 / 9; 
-     }
-   }
+  @include respond-to($large-tablet) { 
+    .hero-inner {
+    aspect-ratio: 16 / 9; 
+    }
+  }
 }
 
 </style>

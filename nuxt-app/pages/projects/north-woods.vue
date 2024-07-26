@@ -11,19 +11,15 @@
       :buildSquareFeet="data.build.buildSquareFeet"
     />
 
-    <Placeholder 
-      title="About"
-      :aspect-ratio="2"
-      :to="'/about'"
+    <ProjectsCarousel 
+      title="Exterior"
+      :slides="data.build.exteriorImages"
     />
-    <Placeholder 
-      title="Work Carousel"
-      :aspect-ratio="2"
+     <ProjectsCarousel 
+      title="Interior"
+      :slides="data.build.interiorImages"
     />
-    <Placeholder 
-      title="Footer"
-      :aspect-ratio="3"
-    />
+    <Contact />
   </div>
 </template>
 

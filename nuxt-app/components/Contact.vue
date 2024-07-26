@@ -8,7 +8,7 @@
       </div>
 
        <div class="right-side">
-        <img src="https://cdn.sanity.io/images/u2pvdjb3/production/5c28fbf959d84c2b6c4b7441e978d0e7c58fc1b9-6407x5501.jpg" alt="">
+        <img src="https://cdn.sanity.io/images/u2pvdjb3/production/f9e334f059704c0856b0c7d43f7d67ffb5a3e8f3-4375x5737.jpg" alt="">
       </div>
    </div>
   </section>
@@ -21,7 +21,7 @@
 
 <style lang="scss">
 .contact-wrapper {
-  padding: 0 span(2); 
+  padding: span(2); 
 
   .contact-inner {
     .contact-title {

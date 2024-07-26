@@ -38,7 +38,7 @@ export default {
   }
 
   .hero-inner {
-    aspect-ratio: 16 / 9; 
+    aspect-ratio: 9 / 16; 
     width: 100; 
     height: 100%;
     position: relative;
@@ -55,6 +55,12 @@ export default {
     
     img {
       @include abs-fill;
+    }
+  }
+
+  @include respond-to($large-tablet) { 
+    .hero-inner {
+      aspect-ratio: 16 / 9; 
     }
   }
 }

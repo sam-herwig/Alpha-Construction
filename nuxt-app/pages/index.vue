@@ -1,7 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- <Header/> -->
-
     <HomeHero 
       :title="data.home.homeTitle"
       :heroImage="data.home.heroImage"
@@ -13,15 +11,9 @@
       :slides="data.build"
     />
     
-    <About 
-    />
+    <About />
 
-    <Contact 
-    />
-    <Placeholder 
-      title="Footer"
-      :aspect-ratio="3"
-    />
+    <Contact />
   </div>
 </template>
 

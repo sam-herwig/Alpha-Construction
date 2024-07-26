@@ -18,19 +18,7 @@
       title="Interior"
       :slides="data.build.interiorImages"
     />
-    <Placeholder 
-      title="About"
-      :aspect-ratio="2"
-      :to="'/about'"
-    />
-    <Placeholder 
-      title="Work Carousel"
-      :aspect-ratio="2"
-    />
-    <Placeholder 
-      title="Footer"
-      :aspect-ratio="3"
-    />
+    <Contact />
   </div>
 </template>
 

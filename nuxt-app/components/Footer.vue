@@ -12,10 +12,12 @@
       </ul>
     </div>
 
-    <div class="left-side">
+    <div class="contact">
         <h5 class="contact-title">Contact Us</h5>
-        <a href="tel:970-485-5345" class="t1">Give us a call at 970-485-5345</a>
-        <a href="mailto:970-485-5345" class="t1">Send us an Email merrick@alphaconstructionbreck.com</a>
+        <div class="contact-cta">
+          <a href="tel:970-485-5345" class="left p1">Give us a call at <span>970-485-5345</span></a>
+          <a href="mailto:970-485-5345" class="p1 right">Send us an Email <span>merrick@alpha<span>constructionbreck.com</span></span></a>
+        </div>
       </div>
       <!-- <div class="footer__social">
         <ul>
@@ -31,14 +33,78 @@
 
 
 <style lang="scss">
+footer {
+  padding: span(1);
+  padding-bottom: span(3);
+
   .footer__logo {
+    margin: 0 auto;
+    width: span(8);
+    position: relative;
+    @include aspect-ratio(74.7%);
+    margin-bottom: $margin-large;
+
     img {
-      width: 100px;
+      @include abs-fill;
     }
   }
 
   .t1 {
     display: block;
   }
+
+  .contact {
+    margin: 0 auto;
+
+    .contact-title {
+      text-align: center;
+      margin-bottom: $margin-small;
+    }
+
+    .contact-cta {
+      text-align: center;
+
+
+      .right {
+      }
+
+      span {
+        display: block;
+        color: $brown;
+      }
+    }
+  }
+
+  @include respond-to($tablet) { 
+    padding-bottom: span(2);
+
+    .footer__logo {
+      margin: 0 auto;
+      width: span(4);
+    }
+
+    .contact {
+      width: span(14);
+
+      .contact-title {
+        margin-bottom: $margin-large;
+      }
+
+      .contact-cta {
+        display: flex; 
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+        
+        .right {
+          text-align: right;
+        }
+      }
+    }
+
+  }
+}
+
+
 
 </style>
