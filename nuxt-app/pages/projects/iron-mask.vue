@@ -16,6 +16,7 @@
     />
      <ProjectsCarousel 
       title="Interior"
+      :isInterior="true"
       :slides="data.build.interiorImages"
     />
     <Contact />

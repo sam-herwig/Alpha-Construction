@@ -3,7 +3,7 @@
     <div class="about-inner">
       <div class="left-side">
         <h2 class="h3 about-title">About Us</h2>
-        <p class="about-description">We have been creating high alpine homes in Summit county for XX years. </p>
+        <p class="about-description">We create high alpine homes in Summit county.</p>
       </div>
       <div class="right-side">
         <img src="https://cdn.sanity.io/images/u2pvdjb3/production/5c28fbf959d84c2b6c4b7441e978d0e7c58fc1b9-6407x5501.jpg" alt="">

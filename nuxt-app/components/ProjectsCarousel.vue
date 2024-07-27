@@ -1,6 +1,6 @@
 <template>
-  <section class="carousel-wrapper">
-    <div class="carousel-inner">
+  <section class="carousel-wrapper" >
+    <div class="carousel-inner" :class="{isInterior}">
       <h2 class="main-title h5">{{ title }}</h2>
 
       <carousel :items-to-show="1" :wrap-around="true">
@@ -28,10 +28,10 @@ export default {
     title: {
       default: ''
     }, 
-    description: {
-      default: 'Creating homes in the high alpine'
-    }, 
-    slides: Array
+    slides: Array, 
+    isInterior: {
+      default: false
+    }
   }, 
   components: {
     Carousel,
@@ -39,9 +39,6 @@ export default {
     Pagination,
     Navigation,
     ResponsiveImage,
-  },
-  mounted() {
-    console.log(this.slides);
   }
 }
 
@@ -71,13 +68,13 @@ export default {
       position: relative;
       @include aspect-ratio(120%);
 
-      &::after {
-        content: ''; 
-        @include abs-fill;
-        pointer-events: none;
-        background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.7%);
+      // &::after {
+      //   content: ''; 
+      //   @include abs-fill;
+      //   pointer-events: none;
+      //   background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.7%);
 
-      }
+      // }
 
        img {
         @include abs-fill;
@@ -104,24 +101,20 @@ export default {
       left: span(-2);
     }
 
+
+
     .carousel__pagination-button {
       &::after {
         background-color: white;
         width: 50px;
       }
-
-      &.--active {
-         &::after {
-          background-color: $brown;
-        }
-      }
     }
 
     .carousel__pagination-button--active {
-      ::after {
-        background-color: blue;
-      }
-    }
+        &::after {
+           background-color: $brown !important;
+        }
+     }
 
     .carousel__pagination {
 
@@ -132,11 +125,8 @@ export default {
             width: 50px;
           }
         }
-         
       }
     }
-    // .carousel-titles {
-    // }
 
     .main-title {
       margin-bottom: $margin-large;
@@ -153,6 +143,8 @@ export default {
   }
 
   @include respond-to($tablet) {
+
+
     .carousel-inner {
       padding: span(2);
       display: flex; 
@@ -161,7 +153,6 @@ export default {
 
       .carousel {
         width: span(18);
-        // flex: 1;
       }
 
       .carousel__item {
@@ -177,9 +168,19 @@ export default {
 
       .carousel__slide {
         padding: 10px;
-        @include aspect-ratio(66%);
+        @include aspect-ratio(100%);
       }
-     }
+
+      .isInterior {
+        .main-title {
+          order: 2; 
+          text-align: right;
+        }
+        .carousel {
+          order: 1;
+        }
+      }
+    }
   }
 }
 

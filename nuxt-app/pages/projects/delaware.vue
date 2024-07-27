@@ -11,6 +11,15 @@
       :buildSquareFeet="data.build.buildSquareFeet"
     />
 
+     <ProjectsCarousel 
+      title="Exterior"
+      :slides="data.build.exteriorImages"
+    />
+     <ProjectsCarousel 
+      title="Interior"
+      :slides="data.build.interiorImages"
+    />
+
     <Contact />
   </div>
 </template>

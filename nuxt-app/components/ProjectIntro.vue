@@ -4,12 +4,12 @@
       <h2 class="h4">The Specs</h2>
         <div class="flex-wrapper">
         <div class="column">
-          <p class="p1"> Address: <span class="h6">{{ buildAddress }}</span></p>
-          <p class="p1">Number of Beds and Baths: <span class="h6">{{ buildBedBath }}</span></p>
+          <p v-if="buildAddress" class="p1"> Address: <span class="h6">{{ buildAddress }}</span></p>
+          <p v-if="buildBedBath" class="p1">Number of Beds and Baths: <span class="h6">{{ buildBedBath }}</span></p>
         </div>
         <div class="column">
-           <p class="p1">The Architect: <span class="h6">{{ buildArchitect }}</span></p>
-           <p class="p1">Square Feet: <span class="h6">{{ buildSquareFeet }}</span></p>
+           <p v-if="buildArchitect" class="p1">The Architect: <span class="h6">{{ buildArchitect }}</span></p>
+           <p v-if="buildSquareFeet" class="p1">Square Feet: <span class="h6">{{ buildSquareFeet }}</span></p>
         </div>
       </div>
     </div>
@@ -51,9 +51,6 @@ export default {
     }
 
     .flex-wrapper {
-
-    
-
       .column {
         width: 100%;
 
