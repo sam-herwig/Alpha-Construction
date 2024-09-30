@@ -5,7 +5,10 @@
       :heroImage="data.home.heroImage"
     />
 
-    <HomeBio />
+    <HomeBio 
+      :homeBioRight="data.home.homeBioRight"
+      :homeBioLeft="data.home.homeBioLeft"
+    />
 
     <HomeCarousel
       :slides="data.build"
@@ -30,6 +33,8 @@ const request = groq`{
               'width': asset->metadata.dimensions.width,
               'height': asset->metadata.dimensions.height,
             },
+            homeBioRight, 
+            homeBioLeft,
           }[0], 
     'build': *[_type == "singleBuild"] {
             ...,

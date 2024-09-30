@@ -1,19 +1,10 @@
 <template>
   <section class="carousel-wrapper">
     <div class="carousel-inner">
-      <!-- <div class="carousel-titles">
-      
-        <h6 class="work-title">{{ description }}</h6>
-      </div> -->
-
       <h2 class="main-title h4">Our Recent Work</h2>
-        <!--<ResponsiveImage :bind="slides[0].slide.img"/> -->
-
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
-          <!-- {{ slide }} -->
           <nuxt-link :to="`/projects/${slide.slug.current}`">
-          <!-- <RouterLink :to="`/about`"> -->
             <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
             <div class="copy-wrapper">
               <h6 class="slide-title">{{slide.buildTitle}}</h6>
@@ -21,7 +12,6 @@
             </div>
           </nuxt-link>
         </slide>
-
         <template #addons>
           <navigation />
           <pagination />
@@ -152,12 +142,6 @@ export default {
         }
      }
 
-    .carousel__pagination-button--active {
-      ::after {
-        background-color: blue;
-      }
-    }
-
     .carousel__pagination {
 
       .carousel__pagination__item {
@@ -167,7 +151,6 @@ export default {
             width: 50px;
           }
         }
-         
       }
     }
     // .carousel-titles {

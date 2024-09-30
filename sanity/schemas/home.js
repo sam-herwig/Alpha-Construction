@@ -32,5 +32,17 @@ export default defineType({
       //description: 'Recommended image size: 2000px × 2500px (4:5 aspect ratio)',
       type: 'image'
     }),
+    defineField({
+      name: 'homeBioLeft',
+      title: 'Home Bio Left',
+      type: 'text',
+      rows: 3
+    }),
+      defineField({
+      name: 'homeBioRight',
+      title: 'Home Bio Right',
+      type: 'text',
+      rows: 3
+    }),
   ]
 });

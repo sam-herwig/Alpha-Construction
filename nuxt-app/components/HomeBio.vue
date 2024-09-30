@@ -1,7 +1,7 @@
 <template>
   <section class="home-bio-wrapper">
     <div class="home-bio-inner">
-      <p class="p1">Alpha Construction was founded in 1995 to provide
+      <!-- <p class="p1">Alpha Construction was founded in 1995 to provide
 residential construction services in Summit County. Over
 the past twenty-seven years, Alpha Construction has
 focused on new home construction, additions to existing
@@ -17,10 +17,26 @@ goal is to be personally involved with every project and
 work hand-in-hand with our clients, subcontractors,
 designers, architects and engineers. Alpha Construction
 has a solid reputation in our community with our
-clientele, contractors, suppliers and building officials.</p>
+clientele, contractors, suppliers and building officials.</p> -->
+  <p class="p1">{{ homeBioLeft }}</p>
+      <p class="p1">{{ homeBioRight }}</p>
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  props: {
+    homeBioRight: {
+      default: ''
+    }, 
+    homeBioLeft: {
+      default: ''
+    }
+  }
+}
+
+</script>
 
 <style lang="scss">
 
