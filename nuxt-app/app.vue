@@ -101,7 +101,7 @@ export default {
       this.$nuxt.$emit('viewportResize');
     },
     consoleBrand() {
-      console.log('%c Made with ☯️ by %c Consume & Create™ ', 'background-color: #000; color: #fff;', 'background-color: #fff; color: #000;');
+      console.log('%', 'background-color: #000; color: #fff;', 'background-color: #fff; color: #000;');
     },
     applyVueScrollFix() {
       // temporary fix for scroll element being a custom wrapper, not the body
