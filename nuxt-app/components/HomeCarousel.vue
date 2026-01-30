@@ -104,6 +104,11 @@ export default {
 
         .slide-title {
           margin-bottom: $margin-small;
+          color: white;
+        }
+        
+        .slide-copy {
+          color: rgba(255, 255, 255, 0.85);
         }
       }
     }
