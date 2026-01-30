@@ -1,23 +1,23 @@
 <template>
   <div class="build-page">
     <ProjectHero 
-      :title="data.build.buildTitle"
-      :heroImage="data.build.buildImage"
+      :title="data?.build?.buildTitle"
+      :heroImage="data?.build?.buildImage"
     />
     <ProjectIntro
-      :buildArchitect="data.build.buildArchitect"
-      :buildAddress="data.build.buildAddress"
-      :buildBedBath="data.build.buildBedBath"
-      :buildSquareFeet="data.build.buildSquareFeet"
+      :buildArchitect="data?.build?.buildArchitect"
+      :buildAddress="data?.build?.buildAddress"
+      :buildBedBath="data?.build?.buildBedBath"
+      :buildSquareFeet="data?.build?.buildSquareFeet"
     />
+
     <ProjectsCarousel 
       title="Exterior"
-      :slides="data.build.exteriorImages"
+      :slides="data?.build?.exteriorImages"
     />
      <ProjectsCarousel 
       title="Interior"
-      :isInterior="true"
-      :slides="data.build.interiorImages"
+      :slides="data?.build?.interiorImages"
     />
     <Contact />
   </div>
@@ -28,7 +28,6 @@ import groq from 'groq';
 
 const { $sanity } = useNuxtApp();
 const slug = 'iron-mask';
-
 const request = groq`{
     "build": *[_type == "singleBuild" && slug.current == $slug] {
           ...,
@@ -53,5 +52,5 @@ const request = groq`{
         }[0], 
   }`;
 
-  const data = await $sanity.fetch(request, { slug }) 
+const { data } = await useAsyncData(`project-${slug}`, () => $sanity.fetch(request, { slug }))
 </script>
