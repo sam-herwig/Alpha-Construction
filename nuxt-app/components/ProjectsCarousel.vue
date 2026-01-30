@@ -115,7 +115,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .gallery-wrapper {
   background: $snow;
 
@@ -301,7 +300,10 @@ export default {
   }
 }
 
-// Lightbox styles (not scoped to work with Teleport)
+</style>
+
+<style lang="scss">
+// Lightbox styles - unscoped for Teleport to body
 .lightbox-overlay {
   position: fixed;
   inset: 0;
