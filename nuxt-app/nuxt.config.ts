@@ -37,6 +37,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    // Private keys (server-side only)
+    resendApiKey: process.env.RESEND_API_KEY,
+    // Public keys (exposed to client)
     public: {
       SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
     },
