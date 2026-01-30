@@ -42,19 +42,6 @@ const structuredData = {
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxtjs/sitemap'
-  ],
-
-  site: {
-    url: 'https://alphaconstructionbreck.com',
-    name: 'Alpha Construction'
-  },
-
-  sitemap: {
-    strictNuxtContentPaths: true
-  },
-
   app: {
     head: {
       title: defaultTitle,
