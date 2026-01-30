@@ -6,9 +6,18 @@
       xmlns="http://www.w3.org/2000/svg"
       class="sketch-svg"
     >
-      <!-- Mountain range backdrop - layered -->
-      <polyline class="draw-line delay-0" points="0,280 40,240 70,255 110,210 150,235 190,195 230,220 270,180 310,200 350,165 390,190 430,155 470,175 500,160" stroke="#A69585" stroke-width="0.75" stroke-opacity="0.25"/>
-      <polyline class="draw-line delay-0" points="0,280 50,235 90,250 130,205 175,230 220,185 260,215 300,175 345,195 385,155 425,180 465,145 500,165" stroke="#A69585" stroke-width="0.75" stroke-opacity="0.35"/>
+      <!-- Mountain range backdrop - Breckenridge-inspired silhouette -->
+      <!-- Back range (farthest, lightest) -->
+      <polyline class="draw-line delay-0" points="0,165 25,158 45,145 60,150 80,130 95,138 110,125 130,115 145,120 160,105 175,95 190,100 205,85 220,92 235,80 250,75 265,82 285,70 305,78 325,72 345,85 365,80 385,95 410,88 435,100 455,95 475,105 490,100 500,110" stroke="#A69585" stroke-width="0.5" stroke-opacity="0.15"/>
+      
+      <!-- Mid range - main Breck profile (Peak 10, Peak 9, Peak 8, Peak 7) -->
+      <polyline class="draw-line delay-0" points="0,180 20,175 35,168 50,172 65,155 80,162 95,148 105,155 115,140 125,148 140,135 150,128 160,135 175,118 185,125 200,108 210,100 220,108 235,95 250,88 265,98 280,85 295,95 315,82 335,92 350,88 365,100 380,95 400,108 420,102 440,115 460,110 480,125 500,118" stroke="#A69585" stroke-width="0.75" stroke-opacity="0.25"/>
+      
+      <!-- Front range (closest, most visible) - distinctive Breck peaks -->
+      <polyline class="draw-line delay-0" points="0,195 30,188 55,178 70,185 85,168 100,178 120,158 135,168 150,150 165,142 180,152 200,135 215,128 225,138 245,120 260,112 275,125 295,108 315,120 335,110 355,125 375,118 395,135 420,128 445,145 470,138 490,155 500,148" stroke="#A69585" stroke-width="1" stroke-opacity="0.35"/>
+      
+      <!-- Treeline hint on lower slopes -->
+      <path class="draw-line delay-0" d="M30,195 Q45,190 55,195 M80,185 Q95,178 110,185 M150,168 Q165,160 180,168 M320,125 Q340,118 360,128 M420,140 Q440,132 460,142" stroke="#A69585" stroke-width="0.5" stroke-opacity="0.2" stroke-linecap="round"/>
       
       <!-- Ground line -->
       <line class="draw-line delay-1" x1="0" y1="280" x2="500" y2="280" stroke="#A69585" stroke-width="1.5"/>
