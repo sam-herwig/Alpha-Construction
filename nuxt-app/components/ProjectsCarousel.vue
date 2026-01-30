@@ -237,7 +237,7 @@ export default {
     
     .gallery-grid {
       grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 220px;
+      grid-auto-rows: 260px;
       gap: 1rem;
       
       &.count-2 .gallery-item { grid-row: span 1; }
@@ -269,7 +269,7 @@ export default {
   @include respond-to($desktop) {
     .gallery-grid {
       grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 200px;
+      grid-auto-rows: 280px;
       gap: 1rem;
       
       &.count-3 {
