@@ -105,22 +105,37 @@ const isVisible = ref(false)
 let observer = null
 
 onMounted(() => {
-  // Wait for next tick to ensure DOM is fully ready after hydration
+  console.log('[BuildingSketch] mounted, sketchContainer:', sketchContainer.value)
+  
   nextTick(() => {
-    if (typeof window === 'undefined' || !sketchContainer.value) return
+    console.log('[BuildingSketch] nextTick, sketchContainer:', sketchContainer.value)
+    
+    if (typeof window === 'undefined') {
+      console.log('[BuildingSketch] SSR - skipping observer')
+      return
+    }
+    
+    if (!sketchContainer.value) {
+      console.log('[BuildingSketch] No ref - skipping observer')
+      return
+    }
     
     observer = new IntersectionObserver(
       (entries) => {
+        console.log('[BuildingSketch] IntersectionObserver fired:', entries)
         entries.forEach((entry) => {
+          console.log('[BuildingSketch] entry.isIntersecting:', entry.isIntersecting)
           if (entry.isIntersecting) {
+            console.log('[BuildingSketch] Setting isVisible = true')
             isVisible.value = true
             observer.disconnect()
           }
         })
       },
-      { threshold: 0.2, rootMargin: '0px' }
+      { threshold: 0.1, rootMargin: '50px' }
     )
     
+    console.log('[BuildingSketch] Observing element')
     observer.observe(sketchContainer.value)
   })
 })
