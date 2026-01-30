@@ -21,10 +21,7 @@
 </template>
 
 <script setup>
-import groq from 'groq';
-
-const { $sanity } = useNuxtApp();
-const request = groq`{
+const query = `{
     'home': *[_type == "home"] {
             homeTitle,
             homeDescription,
@@ -47,7 +44,7 @@ const request = groq`{
               'height': asset->metadata.dimensions.height,
             },
           }, 
-  }`;
+  }`
 
-const { data } = await useAsyncData('home-data', () => $sanity.fetch(request))
+const { data } = await useSanityFetch('home-data', query)
 </script>

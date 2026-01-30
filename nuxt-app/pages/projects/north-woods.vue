@@ -24,11 +24,8 @@
 </template>
 
 <script setup>
-import groq from 'groq';
-
-const { $sanity } = useNuxtApp();
-const slug = 'north-woods';
-const request = groq`{
+const slug = 'north-woods'
+const query = `{
     "build": *[_type == "singleBuild" && slug.current == $slug] {
           ...,
           buildTitle,
@@ -50,7 +47,7 @@ const request = groq`{
             'height': asset->metadata.dimensions.height,
           },
         }[0], 
-  }`;
+  }`
 
-const { data } = await useAsyncData(`project-${slug}`, () => $sanity.fetch(request, { slug }))
+const { data } = await useSanityFetch(`project-${slug}`, query, { slug })
 </script>
