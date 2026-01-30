@@ -1,5 +1,5 @@
 <template>
-  <div class="building-sketch">
+  <div class="building-sketch" ref="sketchContainer" :class="{ 'is-visible': isVisible }">
     <svg 
       viewBox="0 0 400 300" 
       fill="none" 
@@ -99,7 +99,40 @@
 
 <script>
 export default {
-  name: 'BuildingSketch'
+  name: 'BuildingSketch',
+  data() {
+    return {
+      isVisible: false,
+      observer: null
+    }
+  },
+  mounted() {
+    this.setupObserver()
+  },
+  beforeUnmount() {
+    if (this.observer) {
+      this.observer.disconnect()
+    }
+  },
+  methods: {
+    setupObserver() {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.isVisible = true
+              // Once visible, stop observing
+              this.observer.disconnect()
+            }
+          })
+        },
+        { threshold: 0.3 }
+      )
+      if (this.$refs.sketchContainer) {
+        this.observer.observe(this.$refs.sketchContainer)
+      }
+    }
+  }
 }
 </script>
 
@@ -121,19 +154,23 @@ export default {
   fill: none;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
+}
+
+// Only animate when visible
+.is-visible .draw-line {
   animation: drawIn 1.5s ease-out forwards;
 }
 
-.delay-0 { animation-delay: 0s; }
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.5s; }
-.delay-3 { animation-delay: 0.8s; }
-.delay-4 { animation-delay: 1.1s; }
-.delay-5 { animation-delay: 1.3s; }
-.delay-6 { animation-delay: 1.5s; }
-.delay-7 { animation-delay: 1.8s; }
+.is-visible .delay-0 { animation-delay: 0s; }
+.is-visible .delay-1 { animation-delay: 0.2s; }
+.is-visible .delay-2 { animation-delay: 0.5s; }
+.is-visible .delay-3 { animation-delay: 0.8s; }
+.is-visible .delay-4 { animation-delay: 1.1s; }
+.is-visible .delay-5 { animation-delay: 1.3s; }
+.is-visible .delay-6 { animation-delay: 1.5s; }
+.is-visible .delay-7 { animation-delay: 1.8s; }
 
-.smoke-path {
+.is-visible .smoke-path {
   animation: drawIn 1s ease-out forwards, floatSmoke 3s ease-in-out 2.8s infinite;
 }
 
