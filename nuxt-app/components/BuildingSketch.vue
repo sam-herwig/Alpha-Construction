@@ -3,48 +3,122 @@
     <svg 
       viewBox="0 0 400 300" 
       fill="none" 
-      stroke="currentColor" 
-      stroke-width="1"
-      :class="{ 'is-visible': isVisible }"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <!-- Mountain backdrop -->
-      <path 
-        class="draw-line mountain" 
-        d="M0 280 L80 180 L120 220 L180 140 L240 200 L300 120 L400 200 L400 300 L0 300 Z"
-        stroke-width="0.5"
+      <!-- Ground line -->
+      <line 
+        class="draw-line" 
+        :class="{ 'animate': isVisible }"
+        x1="0" y1="260" x2="400" y2="260" 
+        stroke="#A69585" 
+        stroke-width="2"
+        style="--delay: 0s; --duration: 0.8s;"
       />
       
-      <!-- House main structure -->
-      <path class="draw-line structure" d="M100 280 L100 180" />
-      <path class="draw-line structure" d="M300 280 L300 180" />
-      <path class="draw-line structure" d="M100 180 L300 180" />
+      <!-- Mountain backdrop -->
+      <polyline 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        points="0,260 60,200 100,230 160,170 220,210 280,150 340,190 400,160"
+        stroke="#A69585" 
+        stroke-width="1"
+        stroke-opacity="0.4"
+        style="--delay: 0.2s; --duration: 1.2s;"
+      />
+      
+      <!-- House base -->
+      <rect 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        x="120" y="180" width="160" height="80" 
+        stroke="#A69585" 
+        stroke-width="1.5"
+        style="--delay: 0.5s; --duration: 1s;"
+      />
       
       <!-- Roof -->
-      <path class="draw-line roof" d="M80 180 L200 100 L320 180" />
-      <path class="draw-line roof" d="M200 100 L200 180" />
-      
-      <!-- Windows -->
-      <rect class="draw-line windows" x="120" y="200" width="40" height="50" />
-      <rect class="draw-line windows" x="240" y="200" width="40" height="50" />
-      <rect class="draw-line windows" x="170" y="130" width="60" height="40" />
+      <polyline 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        points="100,180 200,110 300,180"
+        stroke="#B87333" 
+        stroke-width="2"
+        style="--delay: 0.8s; --duration: 0.8s;"
+      />
       
       <!-- Door -->
-      <rect class="draw-line door" x="180" y="220" width="40" height="60" />
-      <circle class="draw-line door" cx="212" cy="252" r="3" />
+      <rect 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        x="180" y="210" width="40" height="50" 
+        stroke="#A69585" 
+        stroke-width="1.5"
+        style="--delay: 1.2s; --duration: 0.6s;"
+      />
+      
+      <!-- Window left -->
+      <rect 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        x="135" y="200" width="30" height="30" 
+        stroke="#A69585" 
+        stroke-width="1.5"
+        style="--delay: 1.4s; --duration: 0.5s;"
+      />
+      
+      <!-- Window right -->
+      <rect 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        x="235" y="200" width="30" height="30" 
+        stroke="#A69585" 
+        stroke-width="1.5"
+        style="--delay: 1.5s; --duration: 0.5s;"
+      />
       
       <!-- Chimney -->
-      <path class="draw-line chimney" d="M260 100 L260 70 L280 70 L280 115" />
+      <rect 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        x="240" y="100" width="20" height="40" 
+        stroke="#A69585" 
+        stroke-width="1.5"
+        style="--delay: 1.7s; --duration: 0.5s;"
+      />
       
-      <!-- Smoke wisps -->
-      <path class="draw-line smoke" d="M270 65 Q275 50 265 40 Q255 30 265 15" />
-      <path class="draw-line smoke delay-1" d="M268 68 Q280 55 272 42 Q264 30 275 20" />
+      <!-- Smoke -->
+      <path 
+        class="draw-line smoke"
+        :class="{ 'animate': isVisible }"
+        d="M250 95 Q255 80 248 70 Q241 60 250 45"
+        stroke="#A69585" 
+        stroke-width="1"
+        stroke-opacity="0.5"
+        stroke-linecap="round"
+        style="--delay: 2s; --duration: 1s;"
+      />
       
-      <!-- Ground line -->
-      <path class="draw-line ground" d="M0 280 L400 280" stroke-width="2" />
+      <!-- Tree left -->
+      <path 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        d="M60 260 L60 230 M45 240 L60 225 L75 240"
+        stroke="#A69585" 
+        stroke-width="1.5"
+        stroke-linecap="round"
+        style="--delay: 1.8s; --duration: 0.6s;"
+      />
       
-      <!-- Trees -->
-      <path class="draw-line trees" d="M50 280 L50 250 M40 260 L50 250 L60 260" />
-      <path class="draw-line trees delay-1" d="M350 280 L350 240 M335 255 L350 240 L365 255 M340 265 L350 255 L360 265" />
+      <!-- Tree right -->
+      <path 
+        class="draw-line"
+        :class="{ 'animate': isVisible }"
+        d="M340 260 L340 220 M320 235 L340 215 L360 235 M325 250 L340 235 L355 250"
+        stroke="#A69585" 
+        stroke-width="1.5"
+        stroke-linecap="round"
+        style="--delay: 1.9s; --duration: 0.7s;"
+      />
     </svg>
   </div>
 </template>
@@ -58,7 +132,10 @@ export default {
     }
   },
   mounted() {
-    this.setupObserver();
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      this.setupObserver();
+    }, 100);
   },
   beforeUnmount() {
     if (this.observer) {
@@ -67,15 +144,22 @@ export default {
   },
   methods: {
     setupObserver() {
+      if (typeof IntersectionObserver === 'undefined') {
+        // Fallback for SSR or no support
+        this.isVisible = true;
+        return;
+      }
+      
       this.observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               this.isVisible = true;
+              this.observer.disconnect();
             }
           });
         },
-        { threshold: 0.3 }
+        { threshold: 0.2 }
       );
       
       if (this.$refs.sketchContainer) {
@@ -89,73 +173,48 @@ export default {
 <style lang="scss" scoped>
 .building-sketch {
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
   margin: 0 auto;
+  padding: 1rem;
   
   svg {
     width: 100%;
     height: auto;
-    color: $stone;
-    
-    .draw-line {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      transition: stroke-dashoffset 0s;
-    }
-    
-    &.is-visible {
-      .draw-line {
-        animation: drawLine 2s ease forwards;
-        
-        &.mountain {
-          animation-delay: 0s;
-          animation-duration: 1.5s;
-        }
-        
-        &.ground {
-          animation-delay: 0.2s;
-        }
-        
-        &.structure {
-          animation-delay: 0.5s;
-        }
-        
-        &.roof {
-          animation-delay: 0.8s;
-        }
-        
-        &.windows {
-          animation-delay: 1.2s;
-        }
-        
-        &.door {
-          animation-delay: 1.4s;
-        }
-        
-        &.chimney {
-          animation-delay: 1.6s;
-        }
-        
-        &.smoke {
-          animation-delay: 2s;
-          animation-duration: 1.5s;
-        }
-        
-        &.trees {
-          animation-delay: 1s;
-        }
-        
-        &.delay-1 {
-          animation-delay: 2.3s;
-        }
-      }
-    }
+    overflow: visible;
+  }
+  
+  .draw-line {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    fill: none;
+  }
+  
+  .draw-line.animate {
+    animation: drawLine var(--duration, 1s) ease-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+  
+  .draw-line.smoke.animate {
+    animation: drawLine var(--duration, 1s) ease-out forwards, 
+               floatSmoke 3s ease-in-out infinite;
+    animation-delay: var(--delay, 0s), calc(var(--delay, 0s) + var(--duration, 1s));
   }
 }
 
 @keyframes drawLine {
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes floatSmoke {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 0.3;
   }
 }
 </style>
