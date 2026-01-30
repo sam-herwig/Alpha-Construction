@@ -19,6 +19,7 @@
     "@nuxtjs/dotenv": "^1.4.2",
     "@sanity/client": "^6.12.3",
     "groq": "^3.26.1",
+    "gsap": "^3.14.2",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
     "npm": "^10.4.0",

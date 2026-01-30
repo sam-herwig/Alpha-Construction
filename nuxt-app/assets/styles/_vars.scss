@@ -5,13 +5,18 @@
 @import 'grid';
 
 
-// Colors
-$black: #161616;
-$dark: #282828;
-// $off-white: #e7e7e7;
+// Colors - Mountain Modern Palette
+$black: #1A1A1A;           // Midnight
+$dark: #2C3539;            // Charcoal Slate (primary)
+$stone: #A69585;           // Warm Stone (secondary)
+$copper: #B87333;          // Copper (accent)
+$copper-light: #D4956A;    // Copper light
+$snow: #FAFAFA;            // Snow White (light bg)
+$cream: #F5F3F0;           // Warm cream
 $white: #ffffff;
-$brown: #b79b63;
-// $teal: #008080;
+
+// Legacy aliases
+$brown: $copper;
 
 // Margins
 $margin-extra-large: 48px;
@@ -20,16 +25,16 @@ $margin-normal: 24px;
 $margin-small: 12px;
 $margin-extra-small: 6px;
 
-// Fonts
-$poppins-medium: 'Poppins Medium', Helvetica, sans-serif;
-$roboto: 'Roboto', Helvetica, sans-serif;
-$poppins-bold: 'Poppins Bold', Helvetica, sans-serif;
-$tinos-regular: 'Tinos Regular', Helvetica, serif;
-// $gt-walsheim-medium: 'GT Walsheim Medium', Helvetica, sans-serif;
-// $gt-walsheim-bold: 'GT Walsheim Bold', Helvetica, sans-serif;
-// $gt-walsheim-condensed-bold: 'GT Walsheim Pro Condensed Bold', Helvetica, sans-serif;
-// $playfair-display: 'Playfair Display', Helvetica, sans-serif;
-// $marker: 'Marker', 'Bradley Hand', cursive;
+// Fonts - Mountain Modern Typography
+$font-display: 'Fraunces', Georgia, serif;           // Headlines - warm, crafted feel
+$font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;  // Body - clean, modern
+$font-mono: 'JetBrains Mono', 'SF Mono', monospace;  // Specs/details
+
+// Legacy aliases (for gradual migration)
+$poppins-medium: $font-body;
+$roboto: $font-body;
+$poppins-bold: $font-body;
+$tinos-regular: $font-display;
 
 // Weights
 $weight-black: 900;

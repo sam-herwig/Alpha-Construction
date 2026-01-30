@@ -43,26 +43,28 @@ export default {
 <style lang="scss"> 
 
 .showHeader {
-  transition: opacity 333ms ease;
+  transition: opacity 333ms ease, transform 333ms ease;
   opacity: 1;
-}
-.header.v-leave-active {
- 
+  transform: translateY(0);
 }
 
 header {
   padding: span(0.25) span(1);
   display: flex; 
   align-items: center;
+  justify-content: center;
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: rgba(22,22,22, 0.8);
+  background-color: rgba($snow, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   height: 80px;
   transition: all $speed-demon $evil-ease;
   z-index: 20;
   opacity: 0;
-
+  transform: translateY(-10px);
+  border-bottom: 1px solid rgba($dark, 0.08);
 
   .main-logo {
     width: auto;
@@ -72,36 +74,28 @@ header {
     margin: 0 auto;
     position: relative; 
     aspect-ratio: 186 / 139;
-    height: 90px;
-    margin-top: 10px;
+    height: 70px;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
     
     img {
       @include abs-fill;
+      object-fit: contain;
     }
   }
+}
 
-  // .controls {
-  //   width: 20px; 
-  //   height: 20px;
-  //   position: absolute;
-  //   top: 50%; 
-  //   right: span(1);
-  //   transform: translateY(-50%);
-
-  //   .hamburger {
-  //     @include hamburger($black);
-  //     @include abs-fill;
-  //     opacity: 1; 
-  //     pointer-events: auto;
-  //     visibility: visible;
-  //     transition: all $speed-demon $evil-ease;
-
-  //     &.open {
-  //       @include close($cream);
-  //       transition: all $speed-demon $evil-ease;
-  //     }
-  //   }
-  // }
+@media #{$tablet} {
+  header {
+    height: 100px;
+    
+    .main-logo {
+      height: 85px;
+    }
+  }
 }
 
 </style>
