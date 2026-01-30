@@ -100,6 +100,8 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
+console.log('[BuildingSketch] Script setup running')
+
 const sketchContainer = ref(null)
 const isVisible = ref(false)
 let observer = null

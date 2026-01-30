@@ -34,23 +34,20 @@
   </section>
 </template>
 
-<script>
-import BuildingSketch from '~/components/BuildingSketch.vue'
+<script setup>
+// Nuxt 3 auto-imports components, no need for explicit import
+console.log('[HomeBio] Script setup running')
 
-export default {
-  components: {
-    BuildingSketch
-  },
-  props: {
-    homeBioRight: {
-      default: ''
-    }, 
-    homeBioLeft: {
-      default: ''
-    }
+defineProps({
+  homeBioRight: {
+    type: String,
+    default: ''
+  }, 
+  homeBioLeft: {
+    type: String,
+    default: ''
   }
-}
-
+})
 </script>
 
 <style lang="scss">
