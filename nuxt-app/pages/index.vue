@@ -1,17 +1,17 @@
 <template>
   <div class="home-page">
     <HomeHero 
-      :title="data.home.homeTitle"
-      :heroImage="data.home.heroImage"
+      :title="data?.home?.homeTitle"
+      :heroImage="data?.home?.heroImage"
     />
 
     <HomeBio 
-      :homeBioRight="data.home.homeBioRight"
-      :homeBioLeft="data.home.homeBioLeft"
+      :homeBioRight="data?.home?.homeBioRight"
+      :homeBioLeft="data?.home?.homeBioLeft"
     />
 
     <HomeCarousel
-      :slides="data.build"
+      :slides="data?.build"
     />
     
     <About />
@@ -49,5 +49,5 @@ const request = groq`{
           }, 
   }`;
 
-  const data = await $sanity.fetch(request)
+const { data } = await useAsyncData('home-data', () => $sanity.fetch(request))
 </script>
