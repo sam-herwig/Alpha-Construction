@@ -97,43 +97,39 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'BuildingSketch',
-  data() {
-    return {
-      isVisible: false,
-      observer: null
-    }
-  },
-  mounted() {
-    this.setupObserver()
-  },
-  beforeUnmount() {
-    if (this.observer) {
-      this.observer.disconnect()
-    }
-  },
-  methods: {
-    setupObserver() {
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.isVisible = true
-              // Once visible, stop observing
-              this.observer.disconnect()
-            }
-          })
-        },
-        { threshold: 0.3 }
-      )
-      if (this.$refs.sketchContainer) {
-        this.observer.observe(this.$refs.sketchContainer)
-      }
-    }
+<script setup>
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+
+const sketchContainer = ref(null)
+const isVisible = ref(false)
+let observer = null
+
+onMounted(() => {
+  // Wait for next tick to ensure DOM is fully ready after hydration
+  nextTick(() => {
+    if (typeof window === 'undefined' || !sketchContainer.value) return
+    
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            isVisible.value = true
+            observer.disconnect()
+          }
+        })
+      },
+      { threshold: 0.2, rootMargin: '0px' }
+    )
+    
+    observer.observe(sketchContainer.value)
+  })
+})
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
