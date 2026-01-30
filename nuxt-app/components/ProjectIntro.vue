@@ -7,7 +7,7 @@
       </div>
       
       <div class="specs-grid">
-        <div v-if="buildSquareFeet" class="spec-card featured">
+        <div v-if="buildSquareFeet" class="spec-card">
           <div class="spec-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -135,28 +135,13 @@ export default {
     background: $white;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba($dark, 0.04);
+    border: 1px solid rgba($dark, 0.06);
     transition: all 0.3s ease;
     
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba($dark, 0.08);
-    }
-    
-    &.featured {
-      background: $dark;
-      
-      .spec-icon {
-        background: rgba($white, 0.1);
-        color: $copper;
-      }
-      
-      .spec-value {
-        color: $white;
-      }
-      
-      .spec-name {
-        color: rgba($white, 0.6);
-      }
+      border-color: rgba($copper, 0.2);
     }
     
     .spec-icon {
@@ -214,10 +199,6 @@ export default {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
-    
-    .spec-card.featured {
-      grid-column: 1;
-    }
   }
   
   @include respond-to($desktop) {
@@ -232,10 +213,6 @@ export default {
       
       .spec-icon {
         margin-bottom: 0.5rem;
-      }
-      
-      &.featured {
-        grid-column: 1;
       }
     }
   }
