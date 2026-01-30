@@ -6,12 +6,11 @@
         <h2 class="gallery-title">{{ title }}</h2>
       </div>
 
-      <div class="gallery-grid" :class="{ 'few-images': slides && slides.length <= 3 }">
+      <div class="gallery-grid" :class="`count-${slides ? slides.length : 0}`">
         <div 
           v-for="(slide, index) in slides" 
           :key="index"
           class="gallery-item"
-          :class="getItemClass(index, slides.length)"
           @click="openLightbox(index)"
         >
           <div class="image-container">
@@ -29,6 +28,33 @@
         </div>
       </div>
     </div>
+    
+    <!-- Lightbox Modal -->
+    <Teleport to="body">
+      <div v-if="lightboxOpen" class="lightbox-overlay" @click="closeLightbox">
+        <button class="lightbox-close" @click="closeLightbox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+        <button v-if="slides && slides.length > 1" class="lightbox-nav prev" @click.stop="prevImage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <div class="lightbox-content" @click.stop>
+          <img v-if="slides && slides[currentIndex]" :src="slides[currentIndex].src" :alt="`${title} - Image ${currentIndex + 1}`"/>
+        </div>
+        <button v-if="slides && slides.length > 1" class="lightbox-nav next" @click.stop="nextImage">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div v-if="slides && slides.length > 1" class="lightbox-counter">
+          {{ currentIndex + 1 }} / {{ slides.length }}
+        </div>
+      </div>
+    </Teleport>
   </section>
 </template> 
 
@@ -43,23 +69,46 @@ export default {
       default: false
     }
   },
-  methods: {
-    getItemClass(index, total) {
-      // Create visual variety based on position
-      if (total <= 2) return 'size-large';
-      if (total <= 4) {
-        return index === 0 ? 'size-large' : 'size-medium';
-      }
-      // For larger galleries, create a pattern
-      const pattern = index % 5;
-      if (pattern === 0) return 'size-large';
-      if (pattern === 1 || pattern === 2) return 'size-medium';
-      return 'size-small';
-    },
-    openLightbox(index) {
-      // Could add lightbox functionality later
-      console.log('Open lightbox for image', index);
+  data() {
+    return {
+      lightboxOpen: false,
+      currentIndex: 0
     }
+  },
+  methods: {
+    openLightbox(index) {
+      this.currentIndex = index;
+      this.lightboxOpen = true;
+      document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+      this.lightboxOpen = false;
+      document.body.style.overflow = '';
+    },
+    nextImage() {
+      if (this.slides && this.slides.length > 0) {
+        this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+      }
+    },
+    prevImage() {
+      if (this.slides && this.slides.length > 0) {
+        this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+      }
+    }
+  },
+  mounted() {
+    // Keyboard navigation
+    this.handleKeydown = (e) => {
+      if (!this.lightboxOpen) return;
+      if (e.key === 'Escape') this.closeLightbox();
+      if (e.key === 'ArrowRight') this.nextImage();
+      if (e.key === 'ArrowLeft') this.prevImage();
+    };
+    window.addEventListener('keydown', this.handleKeydown);
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.handleKeydown);
+    document.body.style.overflow = '';
   }
 }
 
@@ -101,12 +150,29 @@ export default {
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
     gap: 0.75rem;
     
-    &.few-images {
-      .gallery-item {
-        aspect-ratio: 4 / 3;
-      }
+    // Different layouts based on image count
+    &.count-1 .gallery-item { grid-column: span 2; grid-row: span 2; }
+    
+    &.count-2 .gallery-item { grid-row: span 2; }
+    
+    &.count-3 {
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    }
+    
+    &.count-4 {
+      .gallery-item:first-child { grid-row: span 2; }
+      .gallery-item:nth-child(4) { grid-row: span 2; }
+    }
+    
+    &.count-5,
+    &.count-6,
+    &.count-7,
+    &.count-8,
+    &.count-9 {
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
     }
   }
   
@@ -115,20 +181,6 @@ export default {
     overflow: hidden;
     border-radius: 4px;
     cursor: pointer;
-    aspect-ratio: 1;
-    
-    &.size-large {
-      grid-column: span 2;
-      aspect-ratio: 16 / 10;
-    }
-    
-    &.size-medium {
-      aspect-ratio: 4 / 3;
-    }
-    
-    &.size-small {
-      aspect-ratio: 1;
-    }
     
     .image-container {
       @include abs-fill;
@@ -186,10 +238,31 @@ export default {
     
     .gallery-grid {
       grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 220px;
       gap: 1rem;
       
-      .gallery-item.size-large {
-        grid-column: span 2;
+      &.count-2 .gallery-item { grid-row: span 1; }
+      &.count-2 .gallery-item:first-child { grid-column: span 2; }
+      
+      &.count-4 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-row: span 1; }
+      }
+      
+      &.count-5 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+      }
+      
+      &.count-6 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+      }
+      
+      &.count-7,
+      &.count-8,
+      &.count-9 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(5) { grid-column: span 2; }
       }
     }
   }
@@ -197,9 +270,134 @@ export default {
   @include respond-to($desktop) {
     .gallery-grid {
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+      grid-auto-rows: 200px;
+      gap: 1rem;
+      
+      &.count-3 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(2),
+        .gallery-item:nth-child(3) { grid-row: span 1; }
+      }
+      
+      &.count-4 {
+        .gallery-item { grid-row: span 1; grid-column: span 1; }
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+      }
+      
+      &.count-5 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4),
+        .gallery-item:nth-child(5) { grid-row: span 1; }
+      }
+      
+      &.count-6,
+      &.count-7,
+      &.count-8,
+      &.count-9 {
+        .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+      }
     }
   }
+}
+
+// Lightbox styles (not scoped to work with Teleport)
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+  
+  svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  &.prev { left: 1.5rem; }
+  &.next { right: 1.5rem; }
+}
+
+.lightbox-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+}
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 </style>
