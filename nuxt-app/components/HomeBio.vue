@@ -1,13 +1,20 @@
 <template>
   <section class="home-bio-wrapper">
     <div class="home-bio-inner">
-      <div class="bio-header">
-        <span class="bio-label">Our Story</span>
-        <h2 class="bio-title">Building Summit County<br><em>since 1995</em></h2>
-      </div>
-      <div class="bio-content">
-        <p class="p1">{{ homeBioLeft }}</p>
-        <p class="p1">{{ homeBioRight }}</p>
+      <div class="bio-main">
+        <div class="bio-text">
+          <div class="bio-header">
+            <span class="bio-label">Our Story</span>
+            <h2 class="bio-title">Building Summit County<br><em>since 1995</em></h2>
+          </div>
+          <div class="bio-content">
+            <p class="p1">{{ homeBioLeft }}</p>
+            <p class="p1">{{ homeBioRight }}</p>
+          </div>
+        </div>
+        <div class="bio-illustration">
+          <BuildingSketch />
+        </div>
       </div>
       <div class="bio-stats">
         <div class="stat">
@@ -28,7 +35,12 @@
 </template>
 
 <script>
+import BuildingSketch from '~/components/BuildingSketch.vue'
+
 export default {
+  components: {
+    BuildingSketch
+  },
   props: {
     homeBioRight: {
       default: ''
@@ -52,8 +64,16 @@ export default {
     margin: 0 auto;
   }
   
-  .bio-header {
+  .bio-main {
+    margin-bottom: span(2);
+  }
+  
+  .bio-text {
     margin-bottom: span(1.5);
+  }
+  
+  .bio-header {
+    margin-bottom: span(1);
     
     .bio-label {
       display: inline-block;
@@ -81,8 +101,6 @@ export default {
   }
   
   .bio-content {
-    margin-bottom: span(2);
-    
     .p1 {
       font-size: 1.125rem;
       line-height: 1.8;
@@ -93,6 +111,11 @@ export default {
         margin-bottom: 0;
       }
     }
+  }
+  
+  .bio-illustration {
+    padding: span(1) 0;
+    opacity: 0.8;
   }
   
   .bio-stats {
@@ -129,13 +152,25 @@ export default {
   @include respond-to($tablet) {
     padding: span(3) span(2);
     
+    .bio-main {
+      display: flex;
+      align-items: center;
+      gap: span(2);
+    }
+    
+    .bio-text {
+      flex: 1.2;
+      margin-bottom: 0;
+    }
+    
+    .bio-illustration {
+      flex: 1;
+      padding: 0;
+    }
+    
     .bio-content {
-      display: flex; 
-      gap: span(1);
-
       .p1 {
-        flex: 1;
-        margin-bottom: 0;
+        margin-bottom: 1rem;
       }
     }
     
@@ -143,6 +178,12 @@ export default {
       .stat {
         text-align: left;
       }
+    }
+  }
+  
+  @include respond-to($desktop) {
+    .bio-main {
+      gap: span(3);
     }
   }
 }
