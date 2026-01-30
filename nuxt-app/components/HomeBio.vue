@@ -35,9 +35,6 @@
 </template>
 
 <script setup>
-// Nuxt 3 auto-imports components, no need for explicit import
-console.log('[HomeBio] Script setup running')
-
 defineProps({
   homeBioRight: {
     type: String,
