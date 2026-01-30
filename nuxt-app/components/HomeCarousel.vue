@@ -5,7 +5,7 @@
       <carousel :items-to-show="1" :wrap-around="true">
         <slide v-for="slide in slides" :key="slide">
           <nuxt-link :to="`/projects/${slide.slug.current}`">
-            <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height"/>
+            <img :src="slide.buildImage.src" :width="slide.buildImage.width" :height="slide.buildImage.height" :alt="slide.buildTitle || 'Alpha Construction project'"/>
             <div class="copy-wrapper">
               <h6 class="slide-title">{{slide.buildTitle}}</h6>
               <p class="slide-copy">{{slide.buildDescription}}</p>

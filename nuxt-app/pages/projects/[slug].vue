@@ -72,6 +72,33 @@ if (!pending.value && !data.value?.build) {
     statusMessage: 'Project Not Found'
   })
 }
+
+// Dynamic SEO for each project
+useHead({
+  title: () => data.value?.build?.buildTitle 
+    ? `${data.value.build.buildTitle} | Alpha Construction` 
+    : 'Project | Alpha Construction',
+  meta: [
+    { 
+      name: 'description', 
+      content: () => data.value?.build?.buildDescription 
+        || `View the ${data.value?.build?.buildTitle || 'project'} custom home built by Alpha Construction in Summit County, Colorado.`
+    },
+    { 
+      property: 'og:title', 
+      content: () => data.value?.build?.buildTitle 
+        ? `${data.value.build.buildTitle} | Alpha Construction` 
+        : 'Project | Alpha Construction'
+    },
+    { 
+      property: 'og:image', 
+      content: () => data.value?.build?.buildImage?.src || ''
+    }
+  ],
+  link: [
+    { rel: 'canonical', href: `https://alphaconstructionbreck.com/projects/${slug}` }
+  ]
+})
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,7 @@
   <div class="card-wrapper">
     <div class="card-inner">
       <div class="card-image-wrapper">
-        <img :src="cardImage.src" :width="cardImage.width" :height="cardImage.height"/>
+        <img :src="cardImage.src" :width="cardImage.width" :height="cardImage.height" :alt="title"/>
         <!-- <ResponsiveImage :bind="cardImage"/> -->
       </div>
       <div class="card-content-wrapper">

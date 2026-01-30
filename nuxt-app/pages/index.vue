@@ -47,4 +47,15 @@ const query = `{
   }`
 
 const { data } = await useSanityFetch('home-data', query)
+
+// Home page SEO
+useHead({
+  title: 'Alpha Construction | Custom Home Builder in Breckenridge, CO',
+  meta: [
+    { name: 'description', content: 'Alpha Construction has been building luxury custom homes in Summit County since 1995. Specializing in new construction, renovations, and additions in Breckenridge, Frisco, and Keystone.' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://alphaconstructionbreck.com/' }
+  ]
+})
 </script>
